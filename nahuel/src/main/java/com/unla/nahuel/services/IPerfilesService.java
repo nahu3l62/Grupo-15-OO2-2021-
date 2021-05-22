@@ -6,4 +6,5 @@ import com.unla.nahuel.entities.Perfiles;
 
 public interface IPerfilesService {
 	public List<Perfiles> getAll();
+	public void save(Perfiles perfil);
 }
