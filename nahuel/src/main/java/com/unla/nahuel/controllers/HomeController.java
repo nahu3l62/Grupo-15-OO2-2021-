@@ -38,7 +38,7 @@ public class HomeController {
 			return ViewRouteHelper.USUARIO_INDEX;
 		}*/
 	
-	
+	//comentario
 	/*Ejemplo server/index
 			@GetMapping("/index")
 			public String index() {
