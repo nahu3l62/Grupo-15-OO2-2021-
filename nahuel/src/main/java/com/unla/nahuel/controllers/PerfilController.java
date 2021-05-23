@@ -1,5 +1,6 @@
 package com.unla.nahuel.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,12 +55,39 @@ public class PerfilController {
 	@GetMapping("/lista")
 	public String listarClientes(Model model) {
 		List<Perfiles> listado = perfilesService.getAll();
-		
+		List<Perfiles> perfiles = new ArrayList<Perfiles>();
+		for (Perfiles p : listado) {
+			if (p.isDeshabilitado() == false) {
+				perfiles.add(p);
+			}
+		}
 		
 		model.addAttribute("titulo","Lista de perfiles");
-		model.addAttribute("lista",listado);
+		model.addAttribute("lista",perfiles);
 
 		return "perfil/lista";
+	}
+	
+	@GetMapping("lista/edit/{id}")
+	public String editar(@PathVariable("id") long id, Model model) {
+
+		Perfiles perfil1 = perfilesService.buscar(id); 
+		
+
+		model.addAttribute("titulo", "Editar usuario");
+		model.addAttribute("perfil", perfil1);
+
+		return "perfil/crear";
+	}
+	
+	@GetMapping("lista/delete/{id}")
+	public String eliminar(@PathVariable("id") long id) {
+		Perfiles p = perfilesService.buscar(id);
+		p.setDeshabilitado(true);
+		perfilesService.save(p);
+		System.out.println("Perfil eliminado con exito");
+
+		return "redirect:/perfil/lista";
 	}
 
 }

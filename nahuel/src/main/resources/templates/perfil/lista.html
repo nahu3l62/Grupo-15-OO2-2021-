@@ -44,14 +44,14 @@
 					<th scope="row" th:text="${li.rol}"></th>
 
 					<td>
-						<a class="btn btn-success btn-sm" th:href="@{/usuarios/lista/edit/}+${li.id}"
-						th:text="Editar" title="Editar registro">
+						<a class="btn btn-success btn-sm" th:href="@{/perfiles/lista/edit/}+${li.id}"
+						th:text="Editar" title="Editar perfil">
 						</a>
 					</td>
 					<td>
-						<a class="btn btn-danger btn-sm" th:href="@{/usuarios/lista/delete/}+${li.id}"
-						th:text="Eliminar" title="Eliminar registro"
-						onclick="return confirm('Esta seguro de eliminar el registro?');">
+						<a class="btn btn-danger btn-sm" th:href="@{/perfiles/lista/delete/}+${li.id}"
+						th:text="Eliminar" title="Eliminar perfil"
+						onclick="return confirm('Esta seguro de eliminar el perfil?');">
 						</a>
 					</td>
 				</tr>

@@ -31,4 +31,14 @@ public class PerfilesService implements IPerfilesService {
 	
 	}
 	
+	@Override
+	public Perfiles buscar(long id) {
+		return perfilesRepository.findById(id).orElse(null);
+	}
+	
+	@Override
+	public void eliminar (long id) {
+		perfilesRepository.deleteById(id);
+	}
+	
 }

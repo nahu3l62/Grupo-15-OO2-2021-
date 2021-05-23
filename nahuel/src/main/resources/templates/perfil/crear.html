@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="head">
-<meta charset="UTF-8"/>
-<title>Objetos 2</title>
-<link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<meta charset="UTF-8" />
+	<title>Objetos 2</title>
+	<link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 </head>
+
 <body>
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,7 +15,7 @@
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-		
+
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
@@ -25,29 +27,31 @@
 	</header>
 
 
-<div class="card bg-light">
-	<div class="card-header bg-dark text-white"></div>
-	<div class="card-body">
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white"></div>
+		<div class="card-body">
 
-<form action="#" th:action="@{/perfiles/}" th:object="${perfil}" method="post">
-	<p> Rol del perfil: <input type="text" th:field="*{rol}" /></p>
-	
-	<input type="submit" />
-</form>
+			<form action="#" th:action="@{/perfiles/}" th:object="${perfil}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<p> Rol del perfil: <input type="text" th:field="*{rol}" /></p>
+
+				<input type="submit" />
+			</form>
+		</div>
 	</div>
-</div>
 
 	<div class="container"></div>
-	
+
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
 		<div class="container">
-		<p>Copyright UNLa 2021</p>
+			<p>Copyright UNLa 2021</p>
 		</div>
-		
+
 		<script type="text/javascript" th:src="@{vendor/bootstrap/jquery/jquery.slim.min.js}"></script>
 		<script type="text/javascript" th:src="@{vendor/bootstrap/js/popper.min.js}"></script>
 		<script type="text/javascript" th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
 	</footer>
-	
+
 </body>
+
 </html>

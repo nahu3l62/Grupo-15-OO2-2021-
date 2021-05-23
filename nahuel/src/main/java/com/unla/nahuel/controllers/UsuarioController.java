@@ -37,10 +37,15 @@ public class UsuarioController {
 
 		Usuario usuario = new Usuario();
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-
+		List<Perfiles> perfiles = new ArrayList<Perfiles>();
+		for (Perfiles p : listaPerfiles) {
+			if (p.isDeshabilitado() == false) {
+				perfiles.add(p);
+			}
+		}
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
-		model.addAttribute("perfiles", listaPerfiles);
+		model.addAttribute("perfiles", perfiles);
 
 		return ViewRouteHelper.USUARIO_INDEX;
 	}
