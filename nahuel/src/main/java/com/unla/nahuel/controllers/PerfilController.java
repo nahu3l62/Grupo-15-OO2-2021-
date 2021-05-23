@@ -87,7 +87,7 @@ public class PerfilController {
 		perfilesService.save(p);
 		System.out.println("Perfil eliminado con exito");
 
-		return "redirect:/perfil/lista";
+		return "redirect:/perfiles/lista";
 	}
 
 }
