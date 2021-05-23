@@ -41,7 +41,7 @@ public class PerfilController {
 	@PostMapping("/")
 	public String guardar(@ModelAttribute Perfiles perfil,Model model) {
 		
-		model.addAttribute("titulo", "Formulario: Nuevo Perfil");
+		model.addAttribute("titulo", "Nuevo Perfil");
 		model.addAttribute("perfil", perfil);
 		
 
@@ -74,7 +74,7 @@ public class PerfilController {
 		Perfiles perfil1 = perfilesService.buscar(id); 
 		
 
-		model.addAttribute("titulo", "Editar usuario");
+		model.addAttribute("titulo", "Editar perfil");
 		model.addAttribute("perfil", perfil1);
 
 		return "perfil/crear";

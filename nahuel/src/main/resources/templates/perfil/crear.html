@@ -28,7 +28,7 @@
 
 
 	<div class="card bg-light">
-		<div class="card-header bg-dark text-white"></div>
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 		<div class="card-body">
 
 			<form action="#" th:action="@{/perfiles/}" th:object="${perfil}" method="post">
