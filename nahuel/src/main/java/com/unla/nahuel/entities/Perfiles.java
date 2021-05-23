@@ -8,20 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="perfiles")
+@Table(name = "perfiles")
 
 public class Perfiles {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@Column(name="rol")
+
+	@Column(name = "rol")
 	private String rol;
-	
-	
-	public Perfiles() {}
-	
+
+	@Column(name = "deshabilitado")
+	private boolean deshabilitado;
+
+	public Perfiles() {
+	}
 
 	public Perfiles(long id, String rol) {
 		super();
@@ -29,44 +31,38 @@ public class Perfiles {
 		this.rol = rol;
 	}
 
-
 	public Perfiles(String rol) {
 		super();
 		this.rol = rol;
 	}
 
-
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
 	public String getRol() {
 		return rol;
 	}
-
 
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
 
+	public boolean isDeshabilitado() {
+		return deshabilitado;
+	}
+
+	public void setDeshabilitado(boolean deshabilitado) {
+		this.deshabilitado = deshabilitado;
+	}
 
 	@Override
 	public String toString() {
 		return rol;
 	}
-	
 
-
-	
-
-
-	
-	
-	
 }
