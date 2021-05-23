@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.nahuel.entities.Perfiles;
+import com.unla.nahuel.entities.User;
 import com.unla.nahuel.entities.Usuario;
 import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.IPerfilesService;
 import com.unla.nahuel.services.IUsuarioService;
+import com.unla.nahuel.services.implementation.UserService;
+
 
 @Controller
 @RequestMapping("/usuarios")
@@ -31,12 +34,23 @@ public class UsuarioController {
 	@Autowired
 	@Qualifier("perfilesService")
 	private IPerfilesService perfilesService;
+	
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 
 	@GetMapping("/")
 	public String crear(Model model) {
 
 		Usuario usuario = new Usuario();
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
+		if(listaPerfiles.isEmpty()) {
+			Perfiles perfil1 = new Perfiles("auditor");
+			Perfiles perfil2 = new Perfiles("administrador");
+			perfilesService.save(perfil1);
+			perfilesService.save(perfil2);
+		}
+		listaPerfiles = perfilesService.getAll();
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
 		for (Perfiles p : listaPerfiles) {
 			if (p.isDeshabilitado() == false) {
@@ -59,6 +73,8 @@ public class UsuarioController {
 		model.addAttribute("perfiles", listaPerfiles);
 
 		usuarioService.save(usuario);
+		User user = new User(usuario.getNombreDeUsuario(),usuario.getContrasena());
+		userService.save(user);
 		System.out.println("Usuario guardado con exito!");
 		return "redirect:/usuarios/";
 

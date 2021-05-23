@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.nahuel.entities.Perfiles;
-import com.unla.nahuel.entities.Usuario;
-import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.IPerfilesService;
 
 @Controller
@@ -25,6 +23,7 @@ public class PerfilController {
 	@Autowired
 	@Qualifier("perfilesService")
 	private IPerfilesService perfilesService;
+	
 	
 	@GetMapping("/")
 	public String crear(Model model) {
@@ -43,8 +42,13 @@ public class PerfilController {
 		
 		model.addAttribute("titulo", "Nuevo Perfil");
 		model.addAttribute("perfil", perfil);
-		
-
+		List<Perfiles> listaPerfiles = perfilesService.getAll();
+		if(listaPerfiles.isEmpty()) {
+			Perfiles perfil1 = new Perfiles("auditor");
+			Perfiles perfil2 = new Perfiles("administrador");
+			perfilesService.save(perfil1);
+			perfilesService.save(perfil2);
+		}
 		perfilesService.save(perfil);
 		System.out.println("Perfil guardado con exito!");
 		return "redirect:/perfiles/";
@@ -56,6 +60,13 @@ public class PerfilController {
 	public String listarClientes(Model model) {
 		List<Perfiles> listado = perfilesService.getAll();
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
+		if(listado.isEmpty()) {
+			Perfiles perfil1 = new Perfiles("auditor");
+			Perfiles perfil2 = new Perfiles("administrador");
+			perfilesService.save(perfil1);
+			perfilesService.save(perfil2);
+		}
+		listado = perfilesService.getAll();
 		for (Perfiles p : listado) {
 			if (p.isDeshabilitado() == false) {
 				perfiles.add(p);

@@ -25,6 +25,7 @@ public class UserService implements UserDetailsService {
 	@Qualifier("userRepository")
 	private IUserRepository userRepository;
 	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		com.unla.nahuel.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
@@ -44,4 +45,9 @@ public class UserService implements UserDetailsService {
 		}
 		return new ArrayList<GrantedAuthority>(grantedAuthorities);
 	}
+	
+	public void save(com.unla.nahuel.entities.User user) {
+		userRepository.save(user);
+	}
+
 }
