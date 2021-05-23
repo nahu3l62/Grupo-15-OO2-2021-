@@ -77,6 +77,8 @@ public class ListaPerfilesPdf extends AbstractPdfView{
 			
 			for(Perfiles perfil : lista) {
 				celda = new PdfPCell(new Phrase(perfil.getRol(), fuenteDatos));
+				celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+				celda.setVerticalAlignment(Element.ALIGN_CENTER);
 				celda.setPadding(5);
 				tablaLista.addCell(celda);
 
