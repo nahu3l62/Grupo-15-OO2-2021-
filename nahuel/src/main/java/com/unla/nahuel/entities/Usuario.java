@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "usuario")
 
@@ -17,23 +18,30 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	
 	@Column(name = "nombre")
 	private String nombre;
+
 
 	@Column(name = "apellido")
 	private String apellido;
 	
+
 	@Column(name = "tipoDocumento")
 	private String tipoDocumento;
 
+	
 	@Column(name = "documento")
 	private int documento;
+
 
 	@Column(name = "correoElectronico")
 	private String correoElectronico;
 
+
 	@Column(name = "nombreDeUsuario")
 	private String nombreDeUsuario;
+
 
 	@Column(name = "contrasena")
 	private String contrasena;

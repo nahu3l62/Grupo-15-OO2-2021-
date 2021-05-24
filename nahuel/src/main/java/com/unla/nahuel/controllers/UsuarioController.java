@@ -1,9 +1,7 @@
 package com.unla.nahuel.controllers;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.unla.nahuel.entities.Perfiles;
 import com.unla.nahuel.entities.Usuario;
 import com.unla.nahuel.helpers.ViewRouteHelper;
@@ -63,18 +60,12 @@ public class UsuarioController {
 
 	@PostMapping("/")
 	public String guardar(@ModelAttribute Usuario usuario, Model model) {
-		List<Perfiles> listaPerfiles = perfilesService.getAll();
-
+		List<Perfiles> listaPerfiles = perfilesService.getAll();	
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("perfiles", listaPerfiles);
-
 		usuarioService.save(usuario);
-		
 		System.out.println("Usuario guardado con exito!");
-		
-		
-		
 		return "redirect:/usuarios/";
 
 	}
