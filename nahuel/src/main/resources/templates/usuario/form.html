@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="head">
-<meta charset="UTF-8"/>
-<title>Objetos 2</title>
-<link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<meta charset="UTF-8" />
+	<title>Objetos 2</title>
+	<link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 </head>
+
 <body>
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,7 +15,7 @@
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-		
+
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
@@ -23,15 +25,15 @@
 			</div>
 		</nav>
 	</header>
-	
-<div class="card bg-light">
-	<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
-	<div class="card-body">
 
-		<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
-			<input type="hidden" th:field="*{id}" />
-			<p> Nombre: <input type="text" th:field="*{nombre}" />
-				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+
+			<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<p> Nombre: <input type="text" th:field="*{nombre}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
 					th:errors="*{nombre}" >
 				</small>
 			</p>

@@ -45,12 +45,6 @@ public class UsuarioController {
 
 		Usuario usuario = new Usuario();
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-		if(listaPerfiles.isEmpty()) {
-			Perfiles perfil1 = new Perfiles("Auditor");
-			Perfiles perfil2 = new Perfiles("Administrador");
-			perfilesService.save(perfil1);
-			perfilesService.save(perfil2);
-		}
 		listaPerfiles = perfilesService.getAll();
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
 		for (Perfiles p : listaPerfiles) {
@@ -68,12 +62,13 @@ public class UsuarioController {
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model) {
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
+		
 		if(result.hasErrors()) {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("perfiles", listaPerfiles);
 		System.out.println("Se encontraron Errores en el formulario!");
-		return ViewRouteHelper.USUARIO_FORM;
+		return ViewRouteHelper.USUARIO_INDEX;
 		}
 		usuario.setDeshabilitado(true);
 		
