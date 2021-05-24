@@ -2,9 +2,7 @@ package com.unla.nahuel.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.unla.nahuel.entities.Perfiles;
 import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.IPerfilesService;
@@ -38,7 +35,7 @@ public class PerfilController {
 		model.addAttribute("perfil", perfil);
 		
 		
-		return "perfil/crear";
+		return ViewRouteHelper.PERFIL_CREAR;
 	}
 	
 	@PostMapping("/")
@@ -49,13 +46,13 @@ public class PerfilController {
 			model.addAttribute("titulo", "Nuevo Perfil");
 			model.addAttribute("perfil", perfil);
 			System.out.println("Se encontraron Errores en el Perfil!");
-			return "perfil/crear";
+			return ViewRouteHelper.PERFIL_CREAR;
 		}
 		
 		perfil.setDeshabilitado(true);
 		perfilesService.save(perfil);
 		System.out.println("Perfil guardado con exito!");
-		return "redirect:/perfiles/";
+		return ViewRouteHelper.PERFIL_REDIRECT;
 		
 	}
 	
@@ -75,7 +72,7 @@ public class PerfilController {
 		model.addAttribute("titulo","Lista de perfiles");
 		model.addAttribute("lista",perfiles);
 
-		return "perfil/lista";
+		return ViewRouteHelper.PERFIL_LISTA;
 	}
 	
 	@GetMapping("lista/edit/{id}")
@@ -87,7 +84,7 @@ public class PerfilController {
 		model.addAttribute("titulo", "Editar perfil");
 		model.addAttribute("perfil", perfil1);
 
-		return "perfil/crear";
+		return ViewRouteHelper.PERFIL_CREAR;
 	}
 	
 	@GetMapping("lista/delete/{id}")
@@ -97,7 +94,7 @@ public class PerfilController {
 		perfilesService.save(p);
 		System.out.println("Perfil eliminado con exito");
 
-		return "redirect:/perfiles/lista";
+		return ViewRouteHelper.PERFIL_REDIRECT_LISTA;
 	}
 
 }
