@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,13 +66,15 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/")
-	public String guardar(@ModelAttribute Usuario usuario, Model model) {
+	public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model) {
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-
+		if(result.hasErrors()) {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("perfiles", listaPerfiles);
-		
+		System.out.println("Se encontraron Errores en el formulario!");
+		return ViewRouteHelper.USUARIO_FORM;
+		}
 		usuario.setDeshabilitado(true);
 		
 		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
