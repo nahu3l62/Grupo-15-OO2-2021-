@@ -39,7 +39,7 @@ public class ListaPerfilesPdf extends AbstractPdfView{
 
 			
 			//Tipo de hoja
-			document.setPageSize(PageSize.A4.rotate());
+			document.setPageSize(PageSize.A4/*.rotate()*/);
 			document.setMargins(-40, -40, 40, 20);
 			document.open();
 			PdfPCell celda = null;

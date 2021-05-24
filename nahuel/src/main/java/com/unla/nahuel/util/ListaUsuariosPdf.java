@@ -95,7 +95,7 @@ public class ListaUsuariosPdf extends AbstractPdfView {
 			celda.setPadding(5);
 			tablaLista.addCell(celda);
 			
-			celda = new PdfPCell(new Phrase("Email", fuenteTituloColumnas));
+			celda = new PdfPCell(new Phrase("Correo Electronico", fuenteTituloColumnas));
 			celda.setBackgroundColor(new  Color(255,113,51));
 			celda.setHorizontalAlignment(Element.ALIGN_CENTER);
 			celda.setVerticalAlignment(Element.ALIGN_CENTER);
