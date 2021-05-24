@@ -22,7 +22,7 @@ public class Usuario {
 
 	@Column(name = "apellido")
 	private String apellido;
-
+	
 	@Column(name = "tipoDocumento")
 	private String tipoDocumento;
 

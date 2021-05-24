@@ -31,20 +31,22 @@
 		<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
 			<input type="hidden" th:field="*{id}" />
 			<p> Nombre: <input type="text" th:field="*{nombre}" /></p>
-			<p> Apellido: <input type="text" th:field="*{apellido}" /></p>
-			<p> Tipo Documento: <input type="text" th:field="*{tipoDocumento}" /></p>
-			<p> Documento: <input type="number" th:field="*{documento}" /></p>
-			<p> Correo Electronico: <input type="text" th:field="*{correoElectronico}" /></p>
-			<p> Usuario: <input type="text" th:field="*{nombreDeUsuario}" /></p>
-			<p> Contrasena: <input type="text" th:field="*{contrasena}" /></p>
-			<div class="form-group row">
-				<p> Perfil del Usuario:</p>
-				<select th:field="*{perfiles}" class="form-control form control-sm col-md-6" id="perfiles">
+	<p> Apellido: <input type="text" th:field="*{apellido}" /></p>
+	<p> Tipo documento:
+				<select th:field="*{tipoDocumento}" id="tipoDocumento">
+				<option th:value="D.N.I." th:text="D.N.I."/>
+				<option th:value="L.C." th:text="L.C."/>
+				<option th:value="L.E." th:text="L.E."/></p>
+	<p> Documento: <input type="number" th:field="*{documento}" /></p>
+	<p> Correo Electronico: <input type="text" th:field="*{correoElectronico}" /></p>
+	<p> Usuario: <input type="text" th:field="*{nombreDeUsuario}" /></p>
+	<p> Contrasena: <input type="text" th:field="*{contrasena}" /></p>
+	<p> Perfil del Usuario:
+				<select th:field="*{perfiles}" id="perfiles">
 				<option th:each="perfil:${perfiles}"
 					th:value="${perfil.id}"
-					th:text="${perfil.rol}"
-					/>
-		</div>
+					th:text="${perfil.rol}"/></p>
+
 
 			<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
 		</form>

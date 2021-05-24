@@ -1,7 +1,6 @@
 package com.unla.nahuel.controllers;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.unla.nahuel.entities.User;
+
 import com.unla.nahuel.helpers.ViewRouteHelper;
 
 
@@ -24,8 +23,16 @@ import com.unla.nahuel.helpers.ViewRouteHelper;
 public class HomeController {
 	
 	
-		@GetMapping("/index")
+		@GetMapping("/")
 		public ModelAndView index() {
+			ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
+			//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			//modelAndView.addObject("username", user.getUsername());
+			return modelAndView;
+		}
+		
+		@GetMapping("/index")
+		public ModelAndView indexx() {
 			ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
 			//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			//modelAndView.addObject("username", user.getUsername());

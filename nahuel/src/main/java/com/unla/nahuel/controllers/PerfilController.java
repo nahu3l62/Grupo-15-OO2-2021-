@@ -44,8 +44,8 @@ public class PerfilController {
 		model.addAttribute("perfil", perfil);
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
 		if(listaPerfiles.isEmpty()) {
-			Perfiles perfil1 = new Perfiles("auditor");
-			Perfiles perfil2 = new Perfiles("administrador");
+			Perfiles perfil1 = new Perfiles("Auditor");
+			Perfiles perfil2 = new Perfiles("Administrador");
 			perfilesService.save(perfil1);
 			perfilesService.save(perfil2);
 		}
