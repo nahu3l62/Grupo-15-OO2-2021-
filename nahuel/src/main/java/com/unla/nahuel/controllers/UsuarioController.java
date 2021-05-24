@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +51,7 @@ public class UsuarioController {
 		listaPerfiles = perfilesService.getAll();
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
 		for (Perfiles p : listaPerfiles) {
-			if (p.isDeshabilitado() == false) {
+			if (p.isDeshabilitado() == true) {
 				perfiles.add(p);
 			}
 		}
@@ -68,6 +69,12 @@ public class UsuarioController {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("perfiles", listaPerfiles);
+		
+		usuario.setDeshabilitado(true);
+		
+		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+		String contrasenaEncriptada = pe.encode(usuario.getContrasena());
+		usuario.setContrasena(contrasenaEncriptada);
 
 		usuarioService.save(usuario);
 		
@@ -84,7 +91,7 @@ public class UsuarioController {
 		List<Usuario> listado = usuarioService.getAll();
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		for (Usuario u : listado) {
-			if (u.isDeshabilitado() == false) {
+			if (u.isDeshabilitado() == true) {
 				usuarios.add(u);
 			}
 		}
@@ -110,7 +117,7 @@ public class UsuarioController {
 	@GetMapping("lista/delete/{id}")
 	public String eliminar(@PathVariable("id") long id) {
 		Usuario u = usuarioService.buscar(id);
-		u.setDeshabilitado(true);
+		u.setDeshabilitado(false);
 		usuarioService.save(u);
 		System.out.println("Registro eliminado con exito");
 

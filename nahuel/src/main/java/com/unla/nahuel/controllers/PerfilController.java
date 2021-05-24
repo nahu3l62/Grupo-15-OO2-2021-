@@ -49,6 +49,7 @@ public class PerfilController {
 			perfilesService.save(perfil1);
 			perfilesService.save(perfil2);
 		}
+		perfil.setDeshabilitado(true);
 		perfilesService.save(perfil);
 		System.out.println("Perfil guardado con exito!");
 		return "redirect:/perfiles/";
@@ -68,7 +69,7 @@ public class PerfilController {
 		}
 		listado = perfilesService.getAll();
 		for (Perfiles p : listado) {
-			if (p.isDeshabilitado() == false) {
+			if (p.isDeshabilitado() == true) {
 				perfiles.add(p);
 			}
 		}
@@ -94,7 +95,7 @@ public class PerfilController {
 	@GetMapping("lista/delete/{id}")
 	public String eliminar(@PathVariable("id") long id) {
 		Perfiles p = perfilesService.buscar(id);
-		p.setDeshabilitado(true);
+		p.setDeshabilitado(false);
 		perfilesService.save(p);
 		System.out.println("Perfil eliminado con exito");
 
