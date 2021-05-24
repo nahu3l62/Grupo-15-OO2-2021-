@@ -9,9 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class NahuelApplication implements CommandLineRunner {
 
-	@Autowired
+	/*@Autowired
 	private BCryptPasswordEncoder passEncoder;
-
+*/
 	public static void main(String[] args) {
 		SpringApplication.run(NahuelApplication.class, args);
 		//HOLA NAHU
@@ -19,13 +19,13 @@ public class NahuelApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		String pass1 = "user";
+		/*String pass1 = "user";
 		String pass2 = "Admin";
 		
 		System.out.println(passEncoder.encode(pass1));
 		System.out.println(passEncoder.encode(pass2));
 
-		
+		*/
 	}
 
 }

@@ -3,10 +3,13 @@ package com.unla.nahuel.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.nahuel.entities.Perfiles;
+import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.IPerfilesService;
 
 @Controller
@@ -30,7 +34,7 @@ public class PerfilController {
 		
 		Perfiles perfil = new Perfiles();
 		
-		model.addAttribute("titulo", "Formulario: Nuevo Perfil");
+		model.addAttribute("titulo", "Nuevo Perfil");
 		model.addAttribute("perfil", perfil);
 		
 		
@@ -38,17 +42,16 @@ public class PerfilController {
 	}
 	
 	@PostMapping("/")
-	public String guardar(@ModelAttribute Perfiles perfil,Model model) {
+	public String guardar(@Valid @ModelAttribute Perfiles perfil,BindingResult result,Model model) {
 		
-		model.addAttribute("titulo", "Nuevo Perfil");
-		model.addAttribute("perfil", perfil);
-		List<Perfiles> listaPerfiles = perfilesService.getAll();
-		if(listaPerfiles.isEmpty()) {
-			Perfiles perfil1 = new Perfiles("Auditor");
-			Perfiles perfil2 = new Perfiles("Administrador");
-			perfilesService.save(perfil1);
-			perfilesService.save(perfil2);
+		
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Nuevo Perfil");
+			model.addAttribute("perfil", perfil);
+			System.out.println("Se encontraron Errores en el Perfil!");
+			return "perfil/crear";
 		}
+		
 		perfil.setDeshabilitado(true);
 		perfilesService.save(perfil);
 		System.out.println("Perfil guardado con exito!");
@@ -61,12 +64,7 @@ public class PerfilController {
 	public String listarClientes(Model model) {
 		List<Perfiles> listado = perfilesService.getAll();
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
-		if(listado.isEmpty()) {
-			Perfiles perfil1 = new Perfiles("auditor");
-			Perfiles perfil2 = new Perfiles("administrador");
-			perfilesService.save(perfil1);
-			perfilesService.save(perfil2);
-		}
+
 		listado = perfilesService.getAll();
 		for (Perfiles p : listado) {
 			if (p.isDeshabilitado() == true) {

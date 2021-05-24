@@ -8,6 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "usuario")
@@ -18,24 +24,30 @@ public class Usuario {
 	private long id;
 
 	@Column(name = "nombre")
+	@NotEmpty
 	private String nombre;
 
 	@Column(name = "apellido")
+	@NotEmpty
 	private String apellido;
 	
 	@Column(name = "tipoDocumento")
 	private String tipoDocumento;
 
 	@Column(name = "documento")
+	@NotNull
 	private int documento;
 
 	@Column(name = "correoElectronico")
+	@Email
 	private String correoElectronico;
 
 	@Column(name = "nombreDeUsuario")
+	@NotEmpty
 	private String nombreDeUsuario;
 
 	@Column(name = "contrasena")
+	@NotEmpty
 	private String contrasena;
 
 	@ManyToOne

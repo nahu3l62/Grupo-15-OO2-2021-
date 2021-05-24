@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "perfiles")
@@ -17,6 +18,7 @@ public class Perfiles {
 	private long id;
 
 	@Column(name = "rol")
+	@NotEmpty
 	private String rol;
 
 	@Column(name = "deshabilitado")
