@@ -3,6 +3,7 @@ package com.unla.nahuel.controllers;
 import java.util.ArrayList;
 
 import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class UsuarioController {
 
 		Usuario usuario = new Usuario();
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-		listaPerfiles = perfilesService.getAll();
+		
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
 		for (Perfiles p : listaPerfiles) {
 			if (p.isDeshabilitado() == true) {
@@ -62,6 +63,14 @@ public class UsuarioController {
 	public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model) {
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
 		
+		List<Perfiles> perfiles = new ArrayList<Perfiles>();
+		for (Perfiles p : listaPerfiles) {
+			if (p.isDeshabilitado() == true) {
+				perfiles.add(p);
+			}
+		}
+		List<Usuario> listaUsuarios = usuarioService.getAll();
+		
 		if(result.hasErrors()) {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
@@ -69,6 +78,19 @@ public class UsuarioController {
 		System.out.println("Se encontraron Errores en el formulario!");
 		return ViewRouteHelper.USUARIO_INDEX;
 		}
+		for(Usuario u: listaUsuarios) {
+			if(u.equals(usuario.getNombreDeUsuario())) {
+				System.out.println("Este nombre de usuario ya esta siendo utilizado");
+				
+				return ViewRouteHelper.USUARIO_REDIRECT;
+			}
+			if(u.equals(usuario.getDocumento())) {
+				System.out.println("Este documento ya tiene un usuario asignado");
+				
+				return ViewRouteHelper.USUARIO_REDIRECT;
+			}
+		}
+		
 		usuario.setDeshabilitado(true);
 		
 		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();

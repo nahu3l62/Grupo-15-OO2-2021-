@@ -175,4 +175,16 @@ public class Usuario {
 				+ "]";
 	}
 
+	
+
+
+	public boolean equals(String nombre) {
+		return this.nombreDeUsuario.equals(nombre);
+		
+	}
+	public boolean equals(int documento) {
+		return this.documento==documento;
+		
+	}
+
 }

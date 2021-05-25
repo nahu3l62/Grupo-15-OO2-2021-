@@ -8,6 +8,7 @@ public class ViewRouteHelper {
 	//Redirects
 	public final static String ROUTE_INDEX = "/index";
 	public final static String ROUTE_REDIRECT = "redirect:/usuarios/lista";
+	public final static String USUARIO_REDIRECT= "redirect:/usuarios/";
 	public final static String PERFIL_REDIRECT = "redirect:/perfiles/";
 	public final static String PERFIL_REDIRECT_LISTA = "redirect:/perfiles/lista";
 	
@@ -16,6 +17,7 @@ public class ViewRouteHelper {
 	public final static String USUARIO_NEW = "usuario/new";
 	public final static String USUARIO_INDEX = "usuario/index";
 	public final static String USUARIO_LISTA = "usuario/lista";
+	
 	
 	//Perfiles
 	public final static String PERFIL_CREAR = "perfil/crear";
