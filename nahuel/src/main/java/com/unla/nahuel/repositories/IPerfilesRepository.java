@@ -12,7 +12,6 @@ import com.unla.nahuel.entities.Perfiles;
 
 @Repository("perfilesRepository")
 public interface IPerfilesRepository extends JpaRepository<Perfiles, Long>{
-	public abstract List<Perfiles> findAll();
-	
-	
+
+
 }

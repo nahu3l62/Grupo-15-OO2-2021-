@@ -69,7 +69,6 @@ public class UsuarioController {
 				perfiles.add(p);
 			}
 		}
-		List<Usuario> listaUsuarios = usuarioService.getAll();
 		
 		if(result.hasErrors()) {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");

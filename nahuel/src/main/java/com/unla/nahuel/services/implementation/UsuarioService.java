@@ -33,17 +33,6 @@ public class UsuarioService implements IUsuarioService {
 		usuarioRepository.save(usuario);
 	}
 
-	
-	/*@Override
-	public boolean remove(Degree degree) {
-		try {
-			degreeRepository.delete(degree);
-			return true;
-		}catch (Exception e) {
-			return false;
-		}
-	}*/
-	
 
 	@Override
 	public void eliminar(long id) {
