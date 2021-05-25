@@ -25,6 +25,20 @@ public class PerfilesService implements IPerfilesService {
 		return perfilesRepository.findAll();
 	}
 	
+	@Override
+	public void save(Perfiles perfil) {
+		perfilesRepository.save(perfil);
 	
+	}
+	
+	@Override
+	public Perfiles buscar(long id) {
+		return perfilesRepository.findById(id).orElse(null);
+	}
+	
+	@Override
+	public void eliminar (long id) {
+		perfilesRepository.deleteById(id);
+	}
 	
 }

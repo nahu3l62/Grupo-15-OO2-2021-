@@ -1,58 +1,96 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="head">
-<meta charset="UTF-8"/>
-<title>Objetos 2</title>
-<link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<meta charset="UTF-8" />
+	<title>Objetos 2</title>
+	<link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 </head>
+
 <body>
 	<header th:fragment="header">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">UNLa</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="/index">Inicio <span class="sr-only">(current)</span></a>
-					</li>
+		<header th:fragment="header">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="/index">UNLa</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+					data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+
+						<li class="nav-item">
+							<a class="nav-link" href="/usuarios/lista">Lista Usuarios </a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/perfiles/lista">Lista Perfiles</a>
+						</li>
+						
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Cerrar sesion</a>
+						</li>
+
+				</div>
+				</li>
 				</ul>
-			</div>
-		</nav>
+				</div>
+			</nav>
+		</header>
 	</header>
 
 
-<div class="card bg-light">
-	<div class="card-header bg-dark text-white"></div>
-	<div class="card-body">
 
-<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
-	<p> Nombre: <input type="text" th:field="*{nombre}" /></p>
-	<p> Apellido: <input type="text" th:field="*{apellido}" /></p>
-	<p> Tipo Documento: <input type="text" th:field="*{tipoDocumento}" /></p>
-	<p> Documento: <input type="number" th:field="*{documento}" /></p>
-	<p> Correo Electronico: <input type="text" th:field="*{correoElectronico}" /></p>
-	<p> Usuario: <input type="text" th:field="*{nombreDeUsuario}" /></p>
-	<p> Contrasena: <input type="text" th:field="*{contrasena}" /></p>
-	
-	<div class="form-group row">
-				<p> Perfil del Usuario:</p>
-				<select th:field="*{perfiles}" class="form-control form control-sm col-md-6" id="perfiles">
-				<option th:each="perfil:${perfiles}"
-					th:value="${perfil.id}"
-					th:text="${perfil.rol}"
-					/>
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+			<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
+				<p> Nombre: <input type="text" th:field="*{nombre}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+					th:errors="*{nombre}" >
+				</small>
+					</p>
+					<p> Apellido: <input type="text" th:field="*{apellido}" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+					th:errors="*{apellido}" >
+				</small>
+					</p>
+					<p> Tipo documento:
+						<select th:field="*{tipoDocumento}" id="tipoDocumento">
+							<option th:value="D.N.I." th:text="D.N.I." />
+							<option th:value="L.C." th:text="L.C." />
+							<option th:value="L.E." th:text="L.E." />
+					</p>
+					<p> Documento: <input type="number" th:field="*{documento}" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('documento')}"
+					th:errors="*{documento}" >
+				</small>
+					</p>
+					
+					<p> Correo Electronico: <input type="text" th:field="*{correoElectronico}" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('correoElectronico')}"
+					th:errors="*{correoElectronico}" >
+				</small>
+					</p>
+					<p> Usuario: <input type="text" th:field="*{nombreDeUsuario}" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombreDeUsuario')}"
+					th:errors="*{nombreDeUsuario}" >
+				</small>
+					</p>
+					<p> Contrasena: <input type="text" th:field="*{contrasena}" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}"
+					th:errors="*{contrasena}" >
+					</p>
+					<p> Perfil del Usuario:
+						<select th:field="*{perfiles}" id="perfiles">
+							<option th:each="perfil:${perfiles}" th:value="${perfil.id}" th:text="${perfil.rol}" />
+					</p>
+					<input type="submit" />
+				</form>
+			</div>
 		</div>
 
-	<input type="submit" />
-</form>
-	</div>
-</div>
-
-	<div class="container"></div>
 	
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
 		<div class="container">

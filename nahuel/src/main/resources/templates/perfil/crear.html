@@ -42,69 +42,36 @@
 		</header>
 	</header>
 
+
 	<div class="card bg-light">
 		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 		<div class="card-body">
 
-			<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
+			<form action="#" th:action="@{/perfiles/}" th:object="${perfil}" method="post">
 				<input type="hidden" th:field="*{id}" />
-				<p> Nombre: <input type="text" th:field="*{nombre}" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-					th:errors="*{nombre}" >
+				<p> Rol del Perfil: <input type="text" th:field="*{rol}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('rol')}"
+					th:errors="*{rol}" >
 				</small>
-			</p>
-	<p> Apellido: <input type="text" th:field="*{apellido}" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
-					th:errors="*{apellido}" >
-				</small>
-	</p>
-	<p> Tipo documento:
-				<select th:field="*{tipoDocumento}" id="tipoDocumento">
-				<option th:value="D.N.I." th:text="D.N.I."/>
-				<option th:value="L.C." th:text="L.C."/>
-				<option th:value="L.E." th:text="L.E."/></p>
-	<p> Documento: <input type="number" th:field="*{documento}" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('documento')}"
-					th:errors="*{documento}" >
-				</small>
-	</p>
-	<p> Correo Electronico: <input type="text" th:field="*{correoElectronico}" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('correoElectronico')}"
-					th:errors="*{correoElectronico}" >
-				</small>
-	</p>
-	<p> Usuario: <input type="text" th:field="*{nombreDeUsuario}" />
-						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombreDeUsuario')}"
-					th:errors="*{nombreDeUsuario}" >
-				</small>
-	</p>
-	<p> Contrasena: <input type="password" th:field="*{contrasena}" />
-		<small class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}"
-					th:errors="*{contrasena}" >
-	</p>
-	<p> Perfil del Usuario:
-				<select th:field="*{perfiles}" id="perfiles">
-				<option th:each="perfil:${perfiles}"
-					th:value="${perfil.id}"
-					th:text="${perfil.rol}"/></p>
+					</p>
 
-
-			<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
-		</form>
+				<input type="submit" />
+			</form>
+		</div>
 	</div>
-</div>
-	
 
-	
+	<div class="container"></div>
+
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
 		<div class="container">
-		<p>Copyright UNLa 2021</p>
+			<p>Copyright UNLa 2021</p>
 		</div>
-		
+
 		<script type="text/javascript" th:src="@{vendor/bootstrap/jquery/jquery.slim.min.js}"></script>
 		<script type="text/javascript" th:src="@{vendor/bootstrap/js/popper.min.js}"></script>
 		<script type="text/javascript" th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
 	</footer>
-	
+
 </body>
+
 </html>
