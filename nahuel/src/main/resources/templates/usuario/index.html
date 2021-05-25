@@ -9,33 +9,45 @@
 
 <body>
 	<header th:fragment="header">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">UNLa</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<header th:fragment="header">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="/index">UNLa</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+					data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="/index">Inicio <span class="sr-only">(current)</span></a>
-					</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/usuarios/lista">Lista Usuarios </a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/perfiles/lista">Lista Perfiles</a>
+						</li>
+						
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Cerrar sesion</a>
+						</li>
+
+				</div>
+				</li>
 				</ul>
-			</div>
-		</nav>
+				</div>
+			</nav>
+		</header>
 	</header>
 
 
+
 	<div class="card bg-light">
-		<div class="card-header bg-dark text-white"></div>
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 		<div class="card-body">
-			<div class="card bg-light">
-				<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
-				<div class="card-body">
-					<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
-						<p> Nombre: <input type="text" th:field="*{nombre}" />
-							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+			<form action="#" th:action="@{/usuarios/}" th:object="${usuario}" method="post">
+				<p> Nombre: <input type="text" th:field="*{nombre}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
 					th:errors="*{nombre}" >
 				</small>
 					</p>
@@ -79,7 +91,6 @@
 			</div>
 		</div>
 
-	<div class="container"></div>
 	
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
 		<div class="container">

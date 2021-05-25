@@ -78,18 +78,6 @@ public class UsuarioController {
 		System.out.println("Se encontraron Errores en el formulario!");
 		return ViewRouteHelper.USUARIO_INDEX;
 		}
-		for(Usuario u: listaUsuarios) {
-			if(u.equals(usuario.getNombreDeUsuario())) {
-				System.out.println("Este nombre de usuario ya esta siendo utilizado");
-				
-				return ViewRouteHelper.USUARIO_REDIRECT;
-			}
-			if(u.equals(usuario.getDocumento())) {
-				System.out.println("Este documento ya tiene un usuario asignado");
-				
-				return ViewRouteHelper.USUARIO_REDIRECT;
-			}
-		}
 		
 		usuario.setDeshabilitado(true);
 		
