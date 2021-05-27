@@ -33,16 +33,9 @@ public class UsuarioService implements IUsuarioService {
 		usuarioRepository.save(usuario);
 	}
 
-
 	@Override
 	public void eliminar(long id) {
 		usuarioRepository.deleteById(id);
 	}
-
-
-
-
-
-
 
 }

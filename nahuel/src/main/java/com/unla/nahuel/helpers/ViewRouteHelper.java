@@ -11,13 +11,26 @@ public class ViewRouteHelper {
 	public final static String USUARIO_REDIRECT= "redirect:/usuarios/";
 	public final static String PERFIL_REDIRECT = "redirect:/perfiles/";
 	public final static String PERFIL_REDIRECT_LISTA = "redirect:/perfiles/lista";
-	
+	public final static String PERSONA_REDIRECT = "redirect:/persona/";
+	public final static String PERMISO_DIARIO_REDIRECT = "redirect:/permiso_diario/";
+	public final static String PERMISO_PERIODO_REDIRECT = "redirect:/permiso_periodo/";
+
+
 	//Usuario
 	public final static String USUARIO_FORM = "usuario/form";
-	public final static String USUARIO_NEW = "usuario/new";
 	public final static String USUARIO_INDEX = "usuario/index";
 	public final static String USUARIO_LISTA = "usuario/lista";
 	
+	//PermisoDiario
+	public final static String PERMISO_DIARIO_CREAR = "permiso_diario/crear";
+	public final static String PERMISO_DIARIO_LISTA = "permiso_diario/lista";
+	
+	//PermisoPeriodo
+	public final static String PERMISO_PERIODO_CREAR = "permiso_periodo/crear";
+	public final static String PERMISO_PERIODO_LISTA = "permiso_periodo/lista";	
+	
+	//Persona
+	public final static String PERSONA_CREAR = "persona/crear";
 	
 	//Perfiles
 	public final static String PERFIL_CREAR = "perfil/crear";

@@ -20,7 +20,7 @@
 				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item">
-						<a class="nav-link" href="/perfiles/lista">Lista Perfiles</a>
+						<a class="nav-link" href="/perfiles/lista">Lista Permisos</a>
 					</li>
 
 					<li class="nav-item">
@@ -40,36 +40,27 @@
 	</div>
 
 	<div class="container">
-	
+
+		<a class="btn btn-primary btn-sm" sec:authorize="hasAuthority('Administrador')" th:href="@{/permisos/}"
+			th:text="'Crear Usuario'" title="Crear nuevo usuario"> 
+		</a>
+
+
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellido</th>
-					<th scope="col" sec:authorize="hasAuthority('Administrador')">Editar</th>
-					<th scope="col" sec:authorize="hasAuthority('Administrador')">Eliminar</th>
-
+					<th scope="col">Persona</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Cantidad de Dias</th>
+					<th scope="col">Vacaciones</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="li:${lista}">
-
-					<th scope="row" th:text="${li.nombre}"></th>
-					<th scope="row" th:text="${li.apellido}"></th>	
-					
-					<td sec:authorize="hasAuthority('Administrador')">
-						<a class="btn btn-success btn-sm" th:href="@{/usuarios/lista/edit/}" th:text="Editar"
-							title="Editar registro">
-						</a>
-					</td>
-					<td sec:authorize="hasAuthority('Administrador')">
-						<a class="btn btn-danger btn-sm" th:href="@{/usuarios/lista/edit/}"
-							th:text="Eliminar" title="Eliminar registro"
-							onclick="return confirm('Esta seguro de eliminar el registro?');">
-						</a>
-					</td>
-					
-					
+					<th scope="row" th:text="${li.persona}"></th>
+					<th scope="row" th:text="${li.fecha}"></th>
+					<th scope="row" th:text="${li.cantDias}"></th>
+					<th scope="row" th:text="${li.vacaciones}"></th>
 				</tr>
 
 			</tbody>

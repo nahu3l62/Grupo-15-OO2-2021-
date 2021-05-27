@@ -1,11 +1,15 @@
 package com.unla.nahuel.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @Table(name = "permisoDiario")
+@PrimaryKeyJoinColumn(referencedColumnName="idPermiso") 
 public class PermisoDiario extends Permiso {
 	
 	@Column(name = "motivo")
@@ -13,8 +17,8 @@ public class PermisoDiario extends Permiso {
 
 	public PermisoDiario() {}
 	
-	public PermisoDiario(String motivo) {
-		super();
+	public PermisoDiario(LocalDate fecha, Persona persona, String motivo) {
+		super(fecha, persona);
 		this.motivo = motivo;
 	}
 

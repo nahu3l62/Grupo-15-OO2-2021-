@@ -1,5 +1,17 @@
 package com.unla.nahuel.services;
 
-public interface IPermisoService {
+import java.util.List;
 
+import com.unla.nahuel.entities.Permiso;
+
+public interface IPermisoService {
+	
+	public List<Permiso> getAll();
+
+	public Permiso buscar(long id);
+
+	public void eliminar(long id);
+	
+	public void save(Permiso permiso);
+	
 }

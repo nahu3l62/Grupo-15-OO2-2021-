@@ -15,6 +15,4 @@ public interface IUsuarioService {
 	
 	public void save(Usuario usuario);
 	
-	
-
 }

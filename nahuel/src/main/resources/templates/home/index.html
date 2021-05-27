@@ -30,16 +30,18 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
         
-        <li class="nav-item dropdown">
-						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Persona</a>
-						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="/persona/">Crear persona</a>
-								<a class="dropdown-item" href="/persona/lista">Lista de personas</a>
-						</div>
-					</li>	
-					
-					
-
+           <li class="nav-item dropdown">
+			<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">Permiso</a>
+			<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="/permiso_diario/">Crear Permiso Diario</a>
+					<a class="dropdown-item" href="/permiso_periodo/">Crear Permiso Periodo</a>
+					<a class="dropdown-item" href="/permiso_diario/lista">Lista de Permisos Diario</a>
+					<a class="dropdown-item" href="/permiso_periodo/lista">Lista de Permisos Periodo</a>
+			</div>
+		  </li>	
+			<li class="nav-item">
+            <a class="nav-link" href="/persona/">Crear Persona</a>
+          </li>
            <li class="nav-item">
             <a class="nav-link" href="/usuarios/lista">Lista Usuarios</a>
           </li>
@@ -53,6 +55,9 @@
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
 							<form th:action="@{/logout}" method="post">
 								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Cerrar sesion" />
+							</form>
+							<form th:action="@{/login}" method="post">
+								<input class="dropdown-item" style="cursor:pointer" type="submit" value="Iniciar sesion" />
 							</form>
 						</div>
 					</li>

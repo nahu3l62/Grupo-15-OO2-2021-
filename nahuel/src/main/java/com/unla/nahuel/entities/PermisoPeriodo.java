@@ -1,13 +1,17 @@
 package com.unla.nahuel.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "permisoPeriodo")
+@PrimaryKeyJoinColumn(referencedColumnName="idPermiso") 
 public class PermisoPeriodo extends Permiso {
 	
 	@Column(name = "cantDias")
@@ -23,8 +27,8 @@ public class PermisoPeriodo extends Permiso {
 	public PermisoPeriodo() {
 	}
 
-	public PermisoPeriodo(int cantDias, boolean vacaciones, Rodado rodado) {
-		super();
+	public PermisoPeriodo(LocalDate fecha, Persona persona, int cantDias, boolean vacaciones, Rodado rodado) {
+		super(fecha, persona);
 		this.cantDias = cantDias;
 		this.vacaciones = vacaciones;
 		this.rodado = rodado;
