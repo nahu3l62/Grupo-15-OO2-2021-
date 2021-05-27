@@ -10,7 +10,6 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "perfiles")
-
 public class Perfiles {
 
 	@Id
