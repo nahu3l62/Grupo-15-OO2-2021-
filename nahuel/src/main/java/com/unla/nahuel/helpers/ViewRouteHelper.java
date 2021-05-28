@@ -14,6 +14,7 @@ public class ViewRouteHelper {
 	public final static String PERSONA_REDIRECT = "redirect:/persona/";
 	public final static String PERMISO_DIARIO_REDIRECT = "redirect:/permiso_diario/";
 	public final static String PERMISO_PERIODO_REDIRECT = "redirect:/permiso_periodo/";
+	public final static String RODADO_REDIRECT = "redirect:/rodado/";
 
 
 	//Usuario
@@ -31,6 +32,9 @@ public class ViewRouteHelper {
 	
 	//Persona
 	public final static String PERSONA_CREAR = "persona/crear";
+	
+	//Rodado
+	public final static String RODADO_CREAR = "rodado/crear";
 	
 	//Perfiles
 	public final static String PERFIL_CREAR = "perfil/crear";

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,10 +34,14 @@ public class PersonaController {
 	}
 
 	@PostMapping("/")
-	public String guardar(@Valid @ModelAttribute Persona persona, Model model) {
+	public String guardar(@Valid @ModelAttribute Persona persona,BindingResult result, Model model) {
 
-		model.addAttribute("titulo", "Formulario: Nueva Persona");
-		model.addAttribute("persona", persona);
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Formulario: Nueva Persona");
+			model.addAttribute("persona", persona);
+			System.out.println("Hubo errores en la creacion del formulario!");
+			return ViewRouteHelper.PERSONA_CREAR;
+		}
 		personaService.save(persona);
 		System.out.println("Usuario guardado con exito!");
 		return ViewRouteHelper.PERSONA_REDIRECT;

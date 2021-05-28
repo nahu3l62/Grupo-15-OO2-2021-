@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "rodado")
@@ -15,9 +16,11 @@ public class Rodado {
 	private int idRodado;
 	
 	@Column(name = "dominio")
+	@NotEmpty
 	private String dominio;
 	
 	@Column(name = "vehiculo")
+	@NotEmpty
 	private String vehiculo;
 	
 
