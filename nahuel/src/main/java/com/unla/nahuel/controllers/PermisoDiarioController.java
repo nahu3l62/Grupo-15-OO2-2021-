@@ -1,21 +1,19 @@
 package com.unla.nahuel.controllers;
 
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.unla.nahuel.entities.Permiso;
+import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.PermisoDiario;
 import com.unla.nahuel.entities.Persona;
 import com.unla.nahuel.helpers.ViewRouteHelper;
+import com.unla.nahuel.services.ILugarService;
 import com.unla.nahuel.services.IPermisoDiarioService;
 import com.unla.nahuel.services.IPersonaService;
 
@@ -31,23 +29,30 @@ public class PermisoDiarioController {
 	@Qualifier("personaService")
 	private IPersonaService personaService;
 	
+	@Autowired
+	@Qualifier("lugarService")
+	private ILugarService lugarService;
+	
 	
 	@GetMapping("/")
 	public String crear(Model model) {
 		
 		PermisoDiario permiso = new PermisoDiario();
 		List<Persona> personas = personaService.getAll();
-
+		List<Lugar> lugares = lugarService.getAll();
+		
+		
 		model.addAttribute("titulo", "Nuevo Permiso");
 		model.addAttribute("permiso", permiso);
 		model.addAttribute("personas", personas);
+		model.addAttribute("lugares", lugares);
 		return ViewRouteHelper.PERMISO_DIARIO_CREAR;
 	}
 	
 	@PostMapping("/")
-	public String guardar(@Valid @ModelAttribute PermisoDiario permiso,BindingResult result,Model model) {
+	public String guardar(PermisoDiario permiso,Model model) {
 		
-		System.out.println(permiso.getFecha());
+		System.out.println(permiso.getFecha()); 
 		System.out.println(permiso.getPersona());
 		permisoDiarioService.save(permiso);
 		System.out.println("Permiso guardado con exito!");

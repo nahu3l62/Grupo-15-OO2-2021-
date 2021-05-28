@@ -49,20 +49,23 @@
 				<p> Persona:
 					<select th:field="*{persona}" id="persona">
 						<option th:each="persona:${personas}" th:value="${persona.idPersona}" th:text="${persona.nombre}+' '+${persona.apellido}+' '+${persona.dni}" />
+					</select>
 				</p>
 				<p> Fecha: <input type="date" th:field="*{fecha}"/></p>
-				
-				
-				
-				
-				
-				
 				<p> Motivo: <input type="text" th:field="*{motivo}" /></p>
 				
-		
 				
-		
+				<p> Lugar desde:
+					<select th:field="*{desdeHasta}" id="desdeHasta">
+						<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}+' '+${lugar.codPostal}" />
+					</select>
+				</p>
 				
+				<p> Lugar hasta:
+					<select th:field="*{desdeHasta}" id="desdeHasta">
+						<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}+' '+${lugar.codPostal}" />
+					</select>
+				</p>
 				
 				<input type="submit" />
 				</form>

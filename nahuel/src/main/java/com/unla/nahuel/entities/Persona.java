@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPersona;
+	private long idPersona;
 	
 	@Column(name = "nombre")
 	@NotEmpty
@@ -37,11 +37,11 @@ public class Persona {
 		this.dni = dni;
 	}
 
-	public int getIdPersona() {
+	public long getIdPersona() {
 		return idPersona;
 	}
 
-	protected void setIdPersona(int idPersona) {
+	protected void setIdPersona(long idPersona) {
 		this.idPersona = idPersona;
 	}
 

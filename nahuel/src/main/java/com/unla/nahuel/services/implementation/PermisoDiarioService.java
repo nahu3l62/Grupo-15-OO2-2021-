@@ -23,18 +23,22 @@ public class PermisoDiarioService implements IPermisoDiarioService {
 	}
 
 	@Override
-	public PermisoDiario buscar(long id) {
-		return permisoDiarioRepository.findById(id).orElse(null);
-	}
-	
-	@Override
 	public void save(PermisoDiario permiso) {
 		permisoDiarioRepository.save(permiso);
 	}
 
 	@Override
-	public void eliminar(long id) {
-		permisoDiarioRepository.deleteById(id);
+	public PermisoDiario buscar(long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public void eliminar(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

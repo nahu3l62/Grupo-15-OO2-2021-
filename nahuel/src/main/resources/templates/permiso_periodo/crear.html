@@ -46,24 +46,57 @@
 		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 		<div class="card-body">
 			<form action="#" th:action="@{/permiso_periodo/}" th:object="${permiso}" method="post">
+				
 				<p> Persona:
 					<select th:field="*{persona}" id="personas">
 						<option th:each="persona:${personas}" th:value="${persona.idPersona}" th:text="${persona.nombre}+' '+${persona.apellido}+' '+${persona.dni}" />
+					</select>
 				</p>
-				<p> Fecha: <input type="date" th:field="*{fecha}" />
-				</small>
-				</p>
-				<p> Cantidad de dias: <input type="number" th:field="*{cantDias}" />
-				</small>
-				</p>
+				
+				
+				<p> Fecha: <input type="date" th:field="*{fecha}" /></p>
+				
+				
+				<p> Cantidad de dias: <input type="number" th:field="*{cantDias}" /></p>
+				
+			
 				<p> Vacaciones:
 					<select th:field="*{vacaciones}" id="vacaciones">
 						<option th:value="true" th:text="si" />
 						<option th:value="false" th:text="no" />
-				</small>
+					</select>
 				</p>
+				
+				
+				
+				<p> Lugar desde:
+					<select th:field="*{desdeHasta}" id="desdeHasta">
+						<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}+' '+${lugar.codPostal}" />
+					</select>
+				</p>
+				
+				<p> Lugar hasta:
+					<select th:field="*{desdeHasta}" id="desdeHasta">
+						<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}+' '+${lugar.codPostal}" />
+					</select>
+				</p>
+				
+
+				<p> Rodado:
+						<select th:field="*{rodado}" id="rodado">
+							<option th:each="rod:${rodados}" th:value="${rod.idRodado}" th:text="${rod.dominio} +' '+${rod.vehiculo}" />
+						</select>
+					</p>
+				
+
 				<input type="submit" />
+				
+				
 				</form>
+				
+				
+				
+				
 			</div>
 		</div>
 

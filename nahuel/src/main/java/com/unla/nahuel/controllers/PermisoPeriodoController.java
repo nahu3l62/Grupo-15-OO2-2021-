@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.PermisoPeriodo;
 import com.unla.nahuel.entities.Persona;
+import com.unla.nahuel.entities.Rodado;
 import com.unla.nahuel.helpers.ViewRouteHelper;
+import com.unla.nahuel.services.ILugarService;
 import com.unla.nahuel.services.IPermisoPeriodoService;
 import com.unla.nahuel.services.IPersonaService;
+import com.unla.nahuel.services.IRodadoService;
 
 @Controller
 @RequestMapping("/permiso_periodo")
@@ -30,16 +34,28 @@ public class PermisoPeriodoController {
 	@Qualifier("personaService")
 	private IPersonaService personaService;
 	
+	@Autowired
+	@Qualifier("lugarService")
+	private ILugarService lugarService;
+	
+	@Autowired
+	@Qualifier("rodadoService")
+	private IRodadoService rodadoService;
+	
 	
 	@GetMapping("/")
 	public String crear(Model model) {
 		
 		PermisoPeriodo permiso = new PermisoPeriodo();
 		List<Persona> personas = personaService.getAll();
+		List<Lugar> lugares = lugarService.getAll();
+		List<Rodado> rodados = rodadoService.getAll();
 
 		model.addAttribute("titulo", "Nuevo Permiso");
 		model.addAttribute("permiso", permiso);
 		model.addAttribute("personas", personas);
+		model.addAttribute("lugares", lugares);
+		model.addAttribute("rodados", rodados);
 		return ViewRouteHelper.PERMISO_PERIODO_CREAR;
 	}
 	

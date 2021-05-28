@@ -21,7 +21,7 @@ public class PermisoDiario extends Permiso {
 		super(fecha, persona);
 		this.motivo = motivo;
 	}
-
+	
 	public String getMotivo() {
 		return motivo;
 	}
@@ -32,7 +32,11 @@ public class PermisoDiario extends Permiso {
 
 	@Override
 	public String toString() {
-		return "PermisoDiario: " + getIdPermiso() + " Motivo=" + motivo;
+		return "PermisoDiario [motivo=" + motivo + "]";
 	}
+	
+	
+	
+	
 
 }

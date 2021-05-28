@@ -88,8 +88,7 @@ public class UsuarioController {
 		
 		System.out.println("Usuario guardado con exito!");
 		
-		
-		
+	
 		return "redirect:/usuarios/";
 
 	}

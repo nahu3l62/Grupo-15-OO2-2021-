@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Lugar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idLugar;
+	private long idLugar;
 	
 	@Column(name = "lugar")
 	private String lugar;
@@ -29,11 +29,11 @@ public class Lugar {
 		this.codPostal = codPostal;
 	}
 
-	public int getIdLugar() {
+	public long getIdLugar() {
 		return idLugar;
 	}
 
-	protected void setIdLugar(int idLugar) {
+	protected void setIdLugar(long idLugar) {
 		this.idLugar = idLugar;
 	}
 
@@ -53,18 +53,6 @@ public class Lugar {
 		this.codPostal = codPostal;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idLugar;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return idLugar == ((Lugar) obj).getIdLugar();
-	}
 
 	@Override
 	public String toString() {

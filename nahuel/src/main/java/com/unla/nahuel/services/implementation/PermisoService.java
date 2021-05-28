@@ -22,10 +22,6 @@ public class PermisoService implements IPermisoService {
 		return permisoRepository.findAll();
 	}
 
-	@Override
-	public Permiso buscar(long id) {
-		return permisoRepository.findById(id).orElse(null);
-	}
 	
 	@Override
 	public void save(Permiso permiso) {
@@ -35,6 +31,13 @@ public class PermisoService implements IPermisoService {
 	@Override
 	public void eliminar(long id) {
 		permisoRepository.deleteById(id);
+	}
+
+
+	@Override
+	public Permiso buscar(long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

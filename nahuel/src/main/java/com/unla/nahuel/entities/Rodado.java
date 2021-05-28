@@ -13,7 +13,7 @@ import javax.validation.constraints.NotEmpty;
 public class Rodado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRodado;
+	private long idRodado;
 	
 	@Column(name = "dominio")
 	@NotEmpty
@@ -32,11 +32,11 @@ public class Rodado {
 		this.vehiculo = vehiculo;
 	}
 	
-	public int getIdRodado() {
+	public long getIdRodado() {
 		return idRodado;
 	}
 
-	protected void setIdRodado(int idRodado) {
+	protected void setIdRodado(long idRodado) {
 		this.idRodado = idRodado;
 	}
 
@@ -55,8 +55,6 @@ public class Rodado {
 	public void setVehiculo(String vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-
-
 
 	@Override
 	public String toString() {

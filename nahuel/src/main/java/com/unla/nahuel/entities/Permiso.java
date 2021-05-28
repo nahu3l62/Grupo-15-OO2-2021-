@@ -16,14 +16,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "permiso")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Permiso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected int idPermiso;
+	protected long idPermiso;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha")
 	protected LocalDate fecha;
 	
@@ -42,12 +45,20 @@ public abstract class Permiso {
 		this.fecha = fecha;
 		this.setPersona(persona);
 	}
+	
+	
+	public Permiso(LocalDate fecha, Persona persona, Set<Lugar> desdeHasta) {
+		super();
+		this.fecha = fecha;
+		this.setPersona(persona);
+		this.desdeHasta = desdeHasta;
+	}
 
-	public int getIdPermiso() {
+	public long getIdPermiso() {
 		return idPermiso;
 	}
 
-	protected void setIdPermiso(int idPermiso) {
+	protected void setIdPermiso(long idPermiso) {
 		this.idPermiso = idPermiso;
 	}
 
@@ -75,11 +86,15 @@ public abstract class Permiso {
 		this.desdeHasta = desdeHasta;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Permiso: " + idPermiso + " Fecha: " + fecha;
+		return "Permiso [idPermiso=" + idPermiso + ", fecha=" + fecha + ", persona=" + persona + ", desdeHasta="
+				+ desdeHasta + "]";
 	}
+
+	
+
+	
+
 
 }
