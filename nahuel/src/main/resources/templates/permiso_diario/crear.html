@@ -47,15 +47,23 @@
 		<div class="card-body">
 			<form action="#" th:action="@{/permiso_diario/}" th:object="${permiso}" method="post">
 				<p> Persona:
-					<select th:field="*{persona}" id="personas">
+					<select th:field="*{persona}" id="persona">
 						<option th:each="persona:${personas}" th:value="${persona.idPersona}" th:text="${persona.nombre}+' '+${persona.apellido}+' '+${persona.dni}" />
 				</p>
-				<p> Fecha: <input type="date" th:field="*{fecha}" />
-				</small>
-				</p>
-				<p> Motivo: <input type="text" th:field="*{motivo}" />
-				</small>
-				</p>
+				<p> Fecha: <input type="date" th:field="*{fecha}"/></p>
+				
+				
+				
+				
+				
+				
+				<p> Motivo: <input type="text" th:field="*{motivo}" /></p>
+				
+		
+				
+		
+				
+				
 				<input type="submit" />
 				</form>
 			</div>

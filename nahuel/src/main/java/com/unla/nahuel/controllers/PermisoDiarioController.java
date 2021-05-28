@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoDiario;
 import com.unla.nahuel.entities.Persona;
 import com.unla.nahuel.helpers.ViewRouteHelper;
@@ -45,8 +46,11 @@ public class PermisoDiarioController {
 	
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute PermisoDiario permiso,BindingResult result,Model model) {
+		
+		System.out.println(permiso.getFecha());
+		System.out.println(permiso.getPersona());
 		permisoDiarioService.save(permiso);
-		System.out.println("Perfil guardado con exito!");
+		System.out.println("Permiso guardado con exito!");
 		return ViewRouteHelper.PERMISO_DIARIO_REDIRECT;
 		
 	}

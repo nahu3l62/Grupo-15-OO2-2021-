@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "permiso")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Permiso {
+public abstract class Permiso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int idPermiso;
