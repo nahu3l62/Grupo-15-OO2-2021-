@@ -36,8 +36,7 @@ public class PermisoService implements IPermisoService {
 
 	@Override
 	public Permiso buscar(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return permisoRepository.findById(id).orElse(null);
 	}
 
 }

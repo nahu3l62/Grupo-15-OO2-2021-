@@ -22,6 +22,10 @@ public class ViewRouteHelper {
 	public final static String USUARIO_INDEX = "usuario/index";
 	public final static String USUARIO_LISTA = "usuario/lista";
 	
+	//Permiso
+	public final static String PERMISO_CREAR = "permiso/crear";
+	public final static String PERMISO_LISTA = "permiso/lista";
+	
 	//PermisoDiario
 	public final static String PERMISO_DIARIO_CREAR = "permiso_diario/crear";
 	public final static String PERMISO_DIARIO_LISTA = "permiso_diario/lista";
