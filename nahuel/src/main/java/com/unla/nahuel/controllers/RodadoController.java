@@ -2,6 +2,8 @@ package com.unla.nahuel.controllers;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,14 @@ public class RodadoController {
 		rodadoService.save(rodado);
 		System.out.println("Usuario guardado con exito!");
 		return ViewRouteHelper.RODADO_REDIRECT;
+	}
+	
+	@GetMapping("/lista")
+	public String listarRodados(Model model) {
+		List<Rodado> rodados = rodadoService.getAll();
+		model.addAttribute("titulo", "Rodados");
+		model.addAttribute("lista", rodados);
+		return ViewRouteHelper.RODADO_LISTA;
 	}
 	
 }

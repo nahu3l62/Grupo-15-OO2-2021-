@@ -32,13 +32,17 @@ public class ViewRouteHelper {
 	
 	//PermisoPeriodo
 	public final static String PERMISO_PERIODO_CREAR = "permiso_periodo/crear";
-	public final static String PERMISO_PERIODO_LISTA = "permiso_periodo/lista";	
+	public final static String PERMISO_PERIODO_LISTA = "permiso_periodo/lista";
+	public final static String PERMISO_PERIODO_RODADO = "permiso_periodo/rodado";	
+
 	
 	//Persona
 	public final static String PERSONA_CREAR = "persona/crear";
 	
 	//Rodado
 	public final static String RODADO_CREAR = "rodado/crear";
+	public final static String RODADO_LISTA = "rodado/lista";
+
 	
 	//Perfiles
 	public final static String PERFIL_CREAR = "perfil/crear";
