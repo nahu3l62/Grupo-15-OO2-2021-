@@ -22,7 +22,6 @@ public class PermisoService implements IPermisoService {
 		return permisoRepository.findAll();
 	}
 
-	
 	@Override
 	public void save(Permiso permiso) {
 		permisoRepository.save(permiso);
