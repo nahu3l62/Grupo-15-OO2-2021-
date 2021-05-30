@@ -65,14 +65,6 @@ public class PermisoDiarioController {
 		return ViewRouteHelper.PERMISO_DIARIO_REDIRECT;
 		
 	}
-	
-	@GetMapping("/lista")
-	public String listarClientes(Model model) {
-		List<PermisoDiario> listado = permisoDiarioService.getAll();
-		model.addAttribute("titulo","Lista de perfiles");
-		model.addAttribute("lista",listado);
-		
-		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
-	}
+
 
 }

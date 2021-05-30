@@ -44,12 +44,10 @@
 
 	<table class="table">
 			<thead class="thead-dark">
-				<form th:action="@{/permiso/fecha}" method="get" >
+				<form th:action="@{/permiso/fechaDiario}" method="get" >
                 <div>
-                <label>Desde</label>
+                <label>Fecha:</label>
                  <input type="date" th:name="fecha1"   />
-                 <label>Hasta</label>
-                 <input type="date" th:name="fecha2"  />
                  </div>
 
                  <button type="submit">Buscar</button>

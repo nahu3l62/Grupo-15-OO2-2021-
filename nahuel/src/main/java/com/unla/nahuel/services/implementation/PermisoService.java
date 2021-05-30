@@ -1,5 +1,6 @@
 package com.unla.nahuel.services.implementation;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,9 @@ public class PermisoService implements IPermisoService {
 	public Permiso buscar(long id) {
 		return permisoRepository.findById(id).orElse(null);
 	}
-
+	
+	public List<Permiso> findByIdAndFetchPersonaEagerly(long idPersona){
+		return permisoRepository.findByIdAndFetchPersonaEagerly(idPersona);
+	}
+	
 }

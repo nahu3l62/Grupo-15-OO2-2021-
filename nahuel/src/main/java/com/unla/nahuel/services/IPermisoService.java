@@ -1,9 +1,10 @@
 package com.unla.nahuel.services;
 
+
 import java.util.List;
 
 import com.unla.nahuel.entities.Permiso;
-import com.unla.nahuel.entities.Persona;
+
 
 public interface IPermisoService {
 	
@@ -14,5 +15,7 @@ public interface IPermisoService {
 	public void eliminar(long id);
 	
 	public void save(Permiso permiso);
+	
+	public List<Permiso> findByIdAndFetchPersonaEagerly(long idPersona);
 	
 }

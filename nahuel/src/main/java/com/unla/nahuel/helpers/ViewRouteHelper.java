@@ -25,6 +25,7 @@ public class ViewRouteHelper {
 	//Permiso
 	public final static String PERMISO_CREAR = "permiso/crear";
 	public final static String PERMISO_ACTIVO = "permiso/activo";
+	public final static String PERMISO_DIARIO = "permiso/activoDiario";
 	
 	//PermisoDiario
 	public final static String PERMISO_DIARIO_CREAR = "permiso_diario/crear";
