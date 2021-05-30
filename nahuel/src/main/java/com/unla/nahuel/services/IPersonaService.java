@@ -10,5 +10,6 @@ public interface IPersonaService {
 	
 	public void save(Persona persona);
 	public List<Persona> getAll();
+	public Persona buscar(long id);
 
 }

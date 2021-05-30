@@ -37,6 +37,7 @@ public class Persona {
 		this.dni = dni;
 	}
 
+
 	public long getIdPersona() {
 		return idPersona;
 	}
@@ -72,7 +73,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona: " + idPersona + " Apellido: " + apellido + " Nombre: " + nombre + " Dni: " + dni;
+		return " Apellido: " + apellido + "- Nombre: " + nombre + "- Dni: " + dni;
 	}
 
 }

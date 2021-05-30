@@ -41,17 +41,13 @@
 
 	<div class="container">
 
-		<a class="btn btn-primary btn-sm" sec:authorize="hasAuthority('Administrador')" th:href="@{/permisos/}"
-			th:text="'Crear Usuario'" title="Crear nuevo usuario"> 
-		</a>
-
-
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Persona</th>
 					<th scope="col">Fecha</th>
 					<th scope="col">Motivo</th>
+					<th scope="col">Desde hasta</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,6 +55,8 @@
 					<th scope="row" th:text="${li.persona}"></th>
 					<th scope="row" th:text="${li.fecha}"></th>
 					<th scope="row" th:text="${li.motivo}"></th>
+					<th scope="row" th:text="${li.desdeHasta}"></th>
+					
 				</tr>
 
 			</tbody>

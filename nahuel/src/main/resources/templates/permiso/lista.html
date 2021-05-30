@@ -45,12 +45,14 @@
 				<tr>
 					<th scope="col">Persona</th>
 					<th scope="col">Fecha</th>
+					<th scope="col">Motivo</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="li:${listado}">
-					<th scope="row" th:text="${li.persona}"></th>
+				<tr th:each="li:${permisos}">
+					<th scope="row" th:text="${li.persona.nombre}"></th>
 					<th scope="row" th:text="${li.fecha}"></th>
+					<th scope="row" th:text="${li.motivo}"></th>
 				</tr>
 
 			</tbody>

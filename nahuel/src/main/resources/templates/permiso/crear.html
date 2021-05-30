@@ -42,19 +42,41 @@
 
 
 
-	<div class="card bg-light">
-		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
-		<div class="card-body">
-			<form action="#" th:action="@{/permiso/lista}" th:object="${persona}" method="post">
-				<p> Persona:
-					<select>
-						<option th:each="persona:${personas}" th:value="${persona.idPersona}" th:text="${persona.nombre}+' '+${persona.apellido}+' '+${persona.dni}" />
-					</select>
-				</p>		
-				<input type="submit" />
-				</form>
-			</div>
-		</div>
+	<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellido</th>
+					<th scope="col">DNI</th>
+					<th scope="col">Permisos diarios</th>
+					<th scope="col">Permisos periodo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="li:${personas}">
+
+					<th scope="row" th:text="${li.nombre}"></th>
+					<th scope="row" th:text="${li.apellido}"></th>
+					<th scope="row" th:text="${li.dni}"></th>
+					
+
+
+					<td>
+						<a class="btn btn-success btn-sm" th:href="@{/permiso/lista/permisoDiario/}+${li.idPersona}" th:text="Mostrar"
+							title="permisos diarios">
+						</a>
+					</td>
+					
+					<td>
+						<a class="btn btn-success btn-sm" th:href="@{/permiso/lista/permisoPeriodo/}+${li.idPersona}" th:text="Mostrar"
+							title="permisos periodo">
+						</a>
+					</td>
+					
+				</tr>
+
+			</tbody>
+		</table>
 
 	
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">

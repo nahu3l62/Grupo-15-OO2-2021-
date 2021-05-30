@@ -24,5 +24,9 @@ public class PersonaService implements IPersonaService {
 	public List<Persona> getAll(){
 		return personaRepository.findAll();
 	}
+	
+	public Persona buscar(long id) {
+		return personaRepository.findById(id).orElse(null);
+	}
 
 }

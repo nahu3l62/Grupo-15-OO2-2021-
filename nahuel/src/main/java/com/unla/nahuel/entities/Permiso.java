@@ -88,8 +88,8 @@ public abstract class Permiso {
 
 	@Override
 	public String toString() {
-		return "Permiso [idPermiso=" + idPermiso + ", fecha=" + fecha + ", persona=" + persona + ", desdeHasta="
-				+ desdeHasta + "]";
+		return "Permiso idPermiso=" + idPermiso + ", fecha=" + fecha + ", persona=" + persona + ", desdeHasta="
+				+ desdeHasta;
 	}
 
 	

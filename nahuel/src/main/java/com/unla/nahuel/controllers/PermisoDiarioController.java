@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.nahuel.entities.Lugar;
+import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoDiario;
 import com.unla.nahuel.entities.Persona;
 import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.ILugarService;
 import com.unla.nahuel.services.IPermisoDiarioService;
+import com.unla.nahuel.services.IPermisoService;
 import com.unla.nahuel.services.IPersonaService;
 
 @Controller
@@ -32,6 +34,10 @@ public class PermisoDiarioController {
 	@Autowired
 	@Qualifier("lugarService")
 	private ILugarService lugarService;
+	
+	@Autowired
+	@Qualifier("permisoService")
+	private IPermisoService permisoService;
 	
 	
 	@GetMapping("/")
