@@ -1,6 +1,5 @@
 package com.unla.nahuel.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.nahuel.entities.Lugar;
-import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoPeriodo;
 import com.unla.nahuel.entities.Persona;
 import com.unla.nahuel.entities.Rodado;
 import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.repositories.IPermisoPeriodoRepository;
-import com.unla.nahuel.repositories.IPermisoRepository;
 import com.unla.nahuel.services.ILugarService;
 import com.unla.nahuel.services.IPermisoPeriodoService;
 import com.unla.nahuel.services.IPersonaService;

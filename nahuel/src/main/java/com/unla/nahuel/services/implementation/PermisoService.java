@@ -33,14 +33,19 @@ public class PermisoService implements IPermisoService {
 		permisoRepository.deleteById(id);
 	}
 
-
 	@Override
 	public Permiso buscar(long id) {
 		return permisoRepository.findById(id).orElse(null);
 	}
 	
+	@Override
 	public List<Permiso> findByIdAndFetchPersonaEagerly(long idPersona){
 		return permisoRepository.findByIdAndFetchPersonaEagerly(idPersona);
+	}
+	
+	@Override
+	public List<Permiso> findByIdAndFetchLugarEagerly(long idLugar){
+		return permisoRepository.findByIdAndFetchLugarEagerly(idLugar);
 	}
 	
 }

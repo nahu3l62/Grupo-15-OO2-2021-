@@ -32,14 +32,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/index","/","/css/**","/images/**","/js/**","/vendor/**").permitAll()
-		.antMatchers("/permiso/").permitAll()
-		.antMatchers("/permiso/activo").permitAll()//.hasAnyAuthority("Auditor", "Administrador")	
-		.antMatchers("/permiso/activo/**").permitAll()
-		.antMatchers("/permiso/activo").hasAnyAuthority("Auditor", "Administrador")
-		.antMatchers("/permiso/activoDiario").hasAnyAuthority("Auditor", "Administrador")
-		.antMatchers("/permiso/**").hasAnyAuthority("Auditor", "Administrador")	
-		.antMatchers("/permiso/lista/permisoDiario/**").permitAll()//no anda, cambiar a auditor? 
-		.antMatchers("/permiso/lista/permisoPeriodo/**").permitAll()//no anda, cambiar a auditor? 
+		.antMatchers("/permiso/").permitAll()//traer permiso por persona
+		.antMatchers("/permiso/lugar").hasAnyAuthority("Auditor", "Administrador")//traer permiso por lugar
+		.antMatchers("/permiso/periodoXlugar/**").hasAnyAuthority("Auditor", "Administrador")//traer permiso por lugar(diario)
+		.antMatchers("/permiso/diarioXlugar/**").hasAnyAuthority("Auditor", "Administrador")//traer permiso por lugar(periodo)
+		.antMatchers("/permiso/activo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
+		.antMatchers("/permiso/fecha").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo(diario)
+		.antMatchers("/permiso/activoDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
+		.antMatchers("/permiso/fechaDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo(periodo)
+		.antMatchers("/permiso/lista/permisoDiario/**").permitAll()//traer permiso por persona(diario)
+		.antMatchers("/permiso/lista/permisoPeriodo/**").permitAll()//traer permiso por persona(periodo)
 		.antMatchers("/permiso_diario/").permitAll()
 		.antMatchers("/permiso_diario/lista").permitAll()
 		.antMatchers("/permiso_periodo/").permitAll()

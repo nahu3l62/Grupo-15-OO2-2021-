@@ -18,4 +18,6 @@ public interface IPermisoService {
 	
 	public List<Permiso> findByIdAndFetchPersonaEagerly(long idPersona);
 	
+	public List<Permiso> findByIdAndFetchLugarEagerly(long idLugar);
+	
 }

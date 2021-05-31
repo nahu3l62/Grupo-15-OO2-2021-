@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.nahuel.entities.Lugar;
-import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoDiario;
 import com.unla.nahuel.entities.Persona;
 import com.unla.nahuel.helpers.ViewRouteHelper;

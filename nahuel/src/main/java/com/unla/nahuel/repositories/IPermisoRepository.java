@@ -16,4 +16,7 @@ public interface IPermisoRepository extends JpaRepository<Permiso, Long> {
 	@Query("SELECT p FROM Permiso p INNER JOIN FETCH p.persona pr WHERE pr.idPersona = (:idPersona)")
 	public abstract List<Permiso> findByIdAndFetchPersonaEagerly(@Param("idPersona") long idPersona);
 	
+	@Query("SELECT p FROM Permiso p INNER JOIN FETCH p.desdeHasta d WHERE d.idLugar = (:idLugar)")
+	public abstract List<Permiso> findByIdAndFetchLugarEagerly(@Param("idLugar") long idLugar);
+	
 }
