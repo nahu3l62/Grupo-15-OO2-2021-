@@ -34,9 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/index","/","/css/**","/images/**","/js/**","/vendor/**").permitAll()
 		.antMatchers("/permiso/").permitAll()
 		.antMatchers("/permiso/activo").permitAll()//.hasAnyAuthority("Auditor", "Administrador")	
-		.antMatchers("/permiso/activo/**").permitAll()//.hasAnyAuthority("Auditor", "Administrador")	
-		.antMatchers("/permiso/lista/permisoDiario/**").permitAll()
-		.antMatchers("/permiso/lista/permisoPeriodo/**").permitAll()
+		.antMatchers("/permiso/activo/**").permitAll()
+		.antMatchers("/permiso/activo").hasAnyAuthority("Auditor", "Administrador")
+		.antMatchers("/permiso/activoDiario").hasAnyAuthority("Auditor", "Administrador")
+		.antMatchers("/permiso/**").hasAnyAuthority("Auditor", "Administrador")	
+		.antMatchers("/permiso/lista/permisoDiario/**").permitAll()//no anda, cambiar a auditor? 
+		.antMatchers("/permiso/lista/permisoPeriodo/**").permitAll()//no anda, cambiar a auditor? 
 		.antMatchers("/permiso_diario/").permitAll()
 		.antMatchers("/permiso_diario/lista").permitAll()
 		.antMatchers("/permiso_periodo/").permitAll()
