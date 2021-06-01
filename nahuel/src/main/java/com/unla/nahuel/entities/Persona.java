@@ -6,11 +6,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.unla.nahuel.customvalidations.SinRepetir;
+
 @Entity
-@Table(name = "persona")
+@Table(name = "persona"/*, uniqueConstraints = {
+		    @UniqueConstraint(columnNames = {
+		        "dni"
+		    })
+		}*/)
 public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +31,7 @@ public class Persona {
 	@NotEmpty
 	private String apellido;
 	
+	@SinRepetir
 	@Column(name = "dni")
 	@NotNull
 	private long dni;
@@ -61,7 +69,8 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
+	
+	
 	public long getDni() {
 		return dni;
 	}
