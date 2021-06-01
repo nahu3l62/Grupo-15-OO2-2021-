@@ -27,6 +27,8 @@ public class ViewRouteHelper {
 	public final static String PERMISO_ACTIVO = "permiso/activo";
 	public final static String PERMISO_DIARIO = "permiso/activoDiario";
 	public final static String PERMISO_TRAER = "permiso/traer";
+	public final static String PERMISO_ACTIVOXFECHAYLUGAR_DIARIO = "permiso/activoLugarDiario";
+	public final static String PERMISO_ACTIVOXFECHAYLUGAR_PERIODO = "permiso/activoLugarPeriodo";
 
 	
 	//PermisoDiario

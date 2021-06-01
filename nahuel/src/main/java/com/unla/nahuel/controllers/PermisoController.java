@@ -1,7 +1,6 @@
 package com.unla.nahuel.controllers;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoDiario;
@@ -60,33 +58,19 @@ public class PermisoController {
 
 	@GetMapping("lista/permisoDiario/{id}")
 	public String traerDiarioXPersona(@PathVariable("id") long id, Model model) {
-
-		List<Permiso> listado = permisoService.findByIdAndFetchPersonaEagerly(id);
-		List<PermisoDiario> listado2 = new ArrayList<PermisoDiario>();
-		for (Permiso p : listado) {
-			if (p instanceof PermisoDiario) {
-				listado2.add((PermisoDiario) p);
-			}
-		}
+		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchPersonaEagerly(id);
+		List<PermisoDiario> listadoDePermisosDiarios = permisoService.filtrarPorPermisoDiario(listadoDePermisos);
 		model.addAttribute("titulo", "Permisos diarios");
-		model.addAttribute("lista", listado2);
-
+		model.addAttribute("lista", listadoDePermisosDiarios);
 		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
 	}
 
 	@GetMapping("lista/permisoPeriodo/{id}")
 	public String traerPeriodoXPersona(@PathVariable("id") long id, Model model) {
-
-		List<Permiso> listado = permisoService.findByIdAndFetchPersonaEagerly(id);
-		List<PermisoPeriodo> listado2 = new ArrayList<PermisoPeriodo>();
-		for (Permiso p : listado) {
-			if (p instanceof PermisoPeriodo) {
-				listado2.add((PermisoPeriodo) p);
-			}
-		}
+		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchPersonaEagerly(id);
+		List<PermisoPeriodo> listadoDePermisosPeriodo = permisoService.filtrarPorPermisoPeriodo(listadoDePermisos);
 		model.addAttribute("titulo", "Permisos por periodo");
-		model.addAttribute("lista", listado2);
-
+		model.addAttribute("lista",listadoDePermisosPeriodo);
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
 	}
 	
@@ -99,18 +83,9 @@ public class PermisoController {
 	@RequestMapping("/fecha")
 	public String activoPeriodoXFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha2, Model model){ 
 	    List<PermisoPeriodo> listado = permisoPeriodoService.getAll();
-		List<PermisoPeriodo> permisos = new ArrayList<PermisoPeriodo>();
-		for (PermisoPeriodo p : listado) {
-			LocalDate fechaVencimiento = p.getFecha().plusDays(p.getCantDias());
-			if (fecha1.isAfter(p.getFecha()) && fecha2.isBefore(fechaVencimiento)
-					|| fecha1.isEqual(p.getFecha()) && fecha2.isEqual(fechaVencimiento)) {
-				permisos.add(p);
-			}
-		}
-		
+		List<PermisoPeriodo> permisos = permisoService.filtrarPorFechaPermisoPeriodo(listado, fecha1, fecha2);
 		model.addAttribute("titulo", "Permisos periodo activos");
 		model.addAttribute("lista", permisos);
-
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
 	} 
 
@@ -123,16 +98,9 @@ public class PermisoController {
 	@RequestMapping("/fechaDiario")
 	public String activoDiarioXFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, Model model){ 
 	    List<PermisoDiario> listado = permisoDiarioService.getAll();
-		List<PermisoDiario> permisos = new ArrayList<PermisoDiario>();
-		for (PermisoDiario p : listado) {
-			if (p.getFecha().isEqual(fecha1)) {
-				permisos.add(p);
-			}
-			
-		}
+		List<PermisoDiario> permisos = permisoService.filtrarPorFechaPermisoDiario(listado, fecha1);
 		model.addAttribute("titulo", "Permisos diarios activos");
 		model.addAttribute("lista", permisos);
-
 		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
 	} 
 	
@@ -144,35 +112,43 @@ public class PermisoController {
 		return ViewRouteHelper.PERMISO_TRAER;
 	}
 	
-	@GetMapping("/periodoXlugar/{id}")
-	public String traerPeriodoXLugar(@PathVariable("id") long id, Model model) {
-		List<Permiso> listado = permisoService.findByIdAndFetchLugarEagerly(id);
-		List<PermisoPeriodo> listado2 = new ArrayList<PermisoPeriodo>();
-		for (Permiso p : listado) {
-			if (p instanceof PermisoPeriodo) {
-				listado2.add((PermisoPeriodo) p);
-			}
-		}
-		model.addAttribute("titulo", "Permisos periodo");
-		model.addAttribute("lista", listado2);
-
+	@GetMapping("/activoFechaLugarPeriodo")
+	public String periodoXFechaYLugar(Model model) {
+		List<Lugar> lugares = lugarService.getAll();
+		model.addAttribute("titulo", "Lugares");
+		model.addAttribute("lugares", lugares);
+		return ViewRouteHelper.PERMISO_ACTIVOXFECHAYLUGAR_PERIODO;
+	}
+	
+	@RequestMapping("/traerFechaLugarPeriodo")
+	public String activoPeriodoXFechaYLugar(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha2, @RequestParam long idLugar, Model model){ 
+		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchLugarEagerly(idLugar);
+		List<PermisoPeriodo> listadoDePermisosPeriodos = permisoService.filtrarPorPermisoPeriodo(listadoDePermisos);
+		List<PermisoPeriodo> listadoDePermisosPeriodosFiltradosPorFecha = permisoService.filtrarPorFechaPermisoPeriodo(listadoDePermisosPeriodos, fecha1, fecha2);
+		model.addAttribute("titulo", "Permisos periodo activos");
+		model.addAttribute("lista", listadoDePermisosPeriodosFiltradosPorFecha);
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
+	} 
+	
+	
+	@GetMapping("/activoFechaLugarDiario")
+	public String diarioXFechaYLugar(Model model) {
+		List<Lugar> lugares = lugarService.getAll();
+		model.addAttribute("titulo", "Permisos");
+		model.addAttribute("lugares", lugares);
+		return ViewRouteHelper.PERMISO_ACTIVOXFECHAYLUGAR_DIARIO;
 	}
 	
-	@GetMapping("/diarioXlugar/{id}")
-	public String traerDiarioXLugar(@PathVariable("id") long id, Model model) {
-		List<Permiso> listado = permisoService.findByIdAndFetchLugarEagerly(id);
-		List<PermisoDiario> listado2 = new ArrayList<PermisoDiario>();
-		for (Permiso p : listado) {
-			if (p instanceof PermisoDiario) {
-				listado2.add((PermisoDiario) p);
-			}
-		}
-		model.addAttribute("titulo", "Permisos diario");
-		model.addAttribute("lista", listado2);
-
+	@RequestMapping("/traerFechaLugarDiario")
+	public String activoDiarioXFechaYLugar(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1,@RequestParam long idLugar, Model model){ 
+		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchLugarEagerly(idLugar);
+		List<PermisoDiario> listadoDePermisosDiarios = permisoService.filtrarPorPermisoDiario(listadoDePermisos);
+		List<PermisoDiario> listadoDePermisosPeriodosFiltradosPorFecha = permisoService.filtrarPorFechaPermisoDiario(listadoDePermisosDiarios, fecha1);
+		model.addAttribute("titulo", "Permisos diarios activos");
+		model.addAttribute("lista", listadoDePermisosPeriodosFiltradosPorFecha);
 		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
-	}
+	} 
 	
+
 
 }

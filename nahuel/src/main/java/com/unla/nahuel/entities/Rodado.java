@@ -60,7 +60,7 @@ public class Rodado {
 
 	@Override
 	public String toString() {
-		return "Rodado: " + idRodado + " Dominio: " + dominio + " Vehiculo: " + vehiculo;
+		return " Dominio: " + dominio + "-Vehiculo: " + vehiculo;
 	}
 
 }

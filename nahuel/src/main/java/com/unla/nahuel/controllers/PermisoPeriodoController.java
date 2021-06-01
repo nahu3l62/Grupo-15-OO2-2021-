@@ -52,12 +52,10 @@ public class PermisoPeriodoController {
 	
 	@GetMapping("/")
 	public String crear(Model model) {
-		
 		PermisoPeriodo permiso = new PermisoPeriodo();
 		List<Persona> personas = personaService.getAll();
 		List<Lugar> lugares = lugarService.getAll();
 		List<Rodado> rodados = rodadoService.getAll();
-
 		model.addAttribute("titulo", "Nuevo Permiso");
 		model.addAttribute("permiso", permiso);
 		model.addAttribute("personas", personas);
@@ -79,12 +77,10 @@ public class PermisoPeriodoController {
 			model.addAttribute("rodados", rodados);
 			System.out.println("Hubo errores en el formulario!");
 			return ViewRouteHelper.PERMISO_PERIODO_CREAR;
-		}
-		
+		}	
 		permisoPeriodoService.save(permiso);
 		System.out.println("Permiso guardado con exito!");
-		return ViewRouteHelper.PERMISO_PERIODO_REDIRECT;
-		
+		return ViewRouteHelper.PERMISO_PERIODO_REDIRECT;	
 	}
 	
 	@GetMapping("/lista")
@@ -92,23 +88,16 @@ public class PermisoPeriodoController {
 		List<PermisoPeriodo> listado = permisoPeriodoService.getAll();
 		model.addAttribute("titulo","Lista de perfiles");
 		model.addAttribute("lista",listado);
-		
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
 	}
 	
-	//---------------------------------------------------------------------------
-	
+
 	@GetMapping("rodados/{id}")
 	public String editar2(@PathVariable("id") long id, Model model) {
-
 		List<PermisoPeriodo> listado = permisoPeriodoRepository.findByIdAndFetchRodadoEagerly(id);
-		
-		System.out.println(listado);
-		
 		Rodado r = rodadoService.buscar(id);
 		model.addAttribute("titulo", "Permisos por periodo de " + r.getDominio());
 		model.addAttribute("lista", listado);
-	
 		return ViewRouteHelper.PERMISO_PERIODO_RODADO;
 	}
 	

@@ -56,7 +56,7 @@ public class Lugar {
 
 	@Override
 	public String toString() {
-		return "Lugar: " + lugar + " CodigoPostal: " + codPostal;
+		return lugar + " - CodigoPostal: " + codPostal;
 	}
 	
 }
