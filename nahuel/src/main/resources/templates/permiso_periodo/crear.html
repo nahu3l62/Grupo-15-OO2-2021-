@@ -57,7 +57,11 @@
 				<p> Fecha: <input type="date" th:field="*{fecha}" /></p>
 				
 				
-				<p> Cantidad de dias: <input type="number" th:field="*{cantDias}" /></p>
+				<p> Cantidad de dias: <input type="number" th:field="*{cantDias}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('cantDias')}"
+					th:errors="*{cantDias}" >
+				</small>
+				</p>
 				
 			
 				<p> Vacaciones:

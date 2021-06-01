@@ -52,7 +52,11 @@
 					</select>
 				</p>
 				<p> Fecha: <input type="date" th:field="*{fecha}"/></p>
-				<p> Motivo: <input type="text" th:field="*{motivo}" /></p>
+				<p> Motivo: <input type="text" th:field="*{motivo}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('motivo')}"
+					th:errors="*{motivo}" >
+				</small>
+				</p>
 				
 				
 				<p> Lugar desde:

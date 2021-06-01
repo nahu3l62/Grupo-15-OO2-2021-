@@ -68,8 +68,21 @@ public class PermisoPeriodoController {
 	
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute PermisoPeriodo permiso,BindingResult result,Model model) {
+		List<Persona> personas = personaService.getAll();
+		List<Lugar> lugares = lugarService.getAll();
+		List<Rodado> rodados = rodadoService.getAll();
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Nuevo Permiso");
+			model.addAttribute("permiso", permiso);
+			model.addAttribute("personas", personas);
+			model.addAttribute("lugares", lugares);
+			model.addAttribute("rodados", rodados);
+			System.out.println("Hubo errores en el formulario!");
+			return ViewRouteHelper.PERMISO_PERIODO_CREAR;
+		}
+		
 		permisoPeriodoService.save(permiso);
-		System.out.println("Perfil guardado con exito!");
+		System.out.println("Permiso guardado con exito!");
 		return ViewRouteHelper.PERMISO_PERIODO_REDIRECT;
 		
 	}
