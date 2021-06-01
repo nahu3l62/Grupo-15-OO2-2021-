@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "persona")
+@Table(name = "persona", uniqueConstraints = {
+@UniqueConstraint(columnNames = {"dni"})
+})
+
 public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.unla.nahuel.entities.Persona;
@@ -28,5 +29,10 @@ public class PersonaService implements IPersonaService {
 	public Persona buscar(long id) {
 		return personaRepository.findById(id).orElse(null);
 	}
+	
+	public Persona findByDni(@Param("dni") Long dni) {
+		return personaRepository.findByDni(dni);
+	}
+
 
 }
