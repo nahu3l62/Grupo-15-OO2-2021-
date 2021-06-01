@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+//comentario
+
 @Entity
 @Table(name = "rodado")
 public class Rodado {
