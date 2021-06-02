@@ -31,7 +31,6 @@ public class RodadoController {
 	@GetMapping("/")
 	public String crear (Model model) {
 		Rodado rodado = new Rodado();
-		
 		model.addAttribute("titulo", "Formulario: Nuevo Rodado");
 		model.addAttribute("rodado", rodado);
 		return ViewRouteHelper.RODADO_CREAR;
@@ -39,12 +38,10 @@ public class RodadoController {
 	
 	@PostMapping("/")
 	public String guardar (@Valid @ModelAttribute Rodado rodado, BindingResult result, Model model) {
-		
 		if(rodadoService.findByDominio(rodado.getDominio())!=null) {
 			FieldError error = new FieldError("rodado", "dominio", "Ya existe un Rodado con ese dominio.");
 			result.addError(error);
 		}
-		
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario: Nuevo Rodado");
 			model.addAttribute("rodado", rodado);

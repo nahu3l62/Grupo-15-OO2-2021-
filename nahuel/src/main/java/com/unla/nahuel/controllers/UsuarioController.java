@@ -43,10 +43,8 @@ public class UsuarioController {
 
 	@GetMapping("/")
 	public String crear(Model model) {
-
 		Usuario usuario = new Usuario();
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-		
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
 		for (Perfiles p : listaPerfiles) {
 			if (p.isDeshabilitado() == true) {
@@ -56,36 +54,30 @@ public class UsuarioController {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("perfiles", perfiles);
-
 		return ViewRouteHelper.USUARIO_INDEX;
 	}
 
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model) {
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-		
 		List<Perfiles> perfiles = new ArrayList<Perfiles>();
 		for (Perfiles p : listaPerfiles) {
 			if (p.isDeshabilitado() == true) {
 				perfiles.add(p);
 			}
 		}
-		
 		if(usuarioService.findByDni(usuario.getDocumento())!=null) {
 			FieldError error = new FieldError("usuario", "documento", "Ya existe una persona con ese DNI");
 			result.addError(error);
 		}
-		
 		if(usuarioService.findByEmail(usuario.getCorreoElectronico())!=null) {
 			FieldError error = new FieldError("usuario", "correoElectronico", "Ya existe una persona con ese correo electronico");
 			result.addError(error);
 		}
-		
 		if(usuarioService.findByUsername(usuario.getNombreDeUsuario())!=null) {
 			FieldError error = new FieldError("usuario", "nombreDeUsuario", "Ya existe una persona con ese nombre de usuario");
 			result.addError(error);
 		}
-		
 		if(result.hasErrors()) {
 		model.addAttribute("titulo", "Formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
@@ -93,18 +85,12 @@ public class UsuarioController {
 		System.out.println("Se encontraron Errores en el formulario!");
 		return ViewRouteHelper.USUARIO_INDEX;
 		}
-		
 		usuario.setDeshabilitado(true);
-		
 		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
 		String contrasenaEncriptada = pe.encode(usuario.getContrasena());
 		usuario.setContrasena(contrasenaEncriptada);
-
 		usuarioService.save(usuario);
-		
 		System.out.println("Usuario guardado con exito!");
-		
-	
 		return "redirect:/usuarios/";
 
 	}
@@ -120,20 +106,16 @@ public class UsuarioController {
 		}
 		model.addAttribute("titulo", "Lista de clientes");
 		model.addAttribute("lista", usuarios);
-
 		return ViewRouteHelper.USUARIO_LISTA;
 	}
 
 	@GetMapping("lista/edit/{id}")
 	public String editar(@PathVariable("id") long id, Model model) {
-
 		Usuario usuario1 = usuarioService.buscar(id);
 		List<Perfiles> listaPerfiles = perfilesService.getAll();
-
 		model.addAttribute("titulo", "Editar usuario");
 		model.addAttribute("usuario", usuario1);
 		model.addAttribute("perfiles", listaPerfiles);
-
 		return ViewRouteHelper.USUARIO_FORM;
 	}
 
@@ -143,7 +125,6 @@ public class UsuarioController {
 		u.setDeshabilitado(false);
 		usuarioService.save(u);
 		System.out.println("Registro eliminado con exito");
-
 		return ViewRouteHelper.ROUTE_REDIRECT;
 	}
 

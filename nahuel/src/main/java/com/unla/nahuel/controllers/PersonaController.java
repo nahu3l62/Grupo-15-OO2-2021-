@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.unla.nahuel.entities.Persona;
 import com.unla.nahuel.helpers.ViewRouteHelper;
-import com.unla.nahuel.repositories.IPersonaRepository;
 import com.unla.nahuel.services.IPersonaService;
 
 @Controller
@@ -26,24 +25,18 @@ public class PersonaController {
 	
 	@GetMapping("/")
 	public String crear(Model model) {
-
 		Persona persona = new Persona();
-
 		model.addAttribute("titulo", "Formulario: Nueva Persona");
 		model.addAttribute("persona", persona);
-
 		return ViewRouteHelper.PERSONA_CREAR;
 	}
 
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute Persona persona,BindingResult result, Model model) {
-
 		if(personaService.findByDni(persona.getDni())!=null) {
 			FieldError error = new FieldError("persona", "dni", "Ya existe una persona con ese DNI");
 			result.addError(error);
 		}
-		
-		
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario: Nueva Persona");
 			model.addAttribute("persona", persona);

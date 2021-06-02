@@ -39,20 +39,29 @@
 			</nav>
 		</header>
 	</header>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 	<table class="table">
 			<thead class="thead-dark">
 				<form th:action="@{/permiso_diario/}" method="get" >
-                <div>
-                <label>Ingrese el dni</label>
+                <div style="text-align:center;">
+                <label>Ingrese el número de documento:</label>
                  <input type="number" th:name="dni"   />
-                 
-                 <button type="submit">Buscar</button>
+                 <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
                  </form>
 			</tbody>
 		</table>
+		
 
 	
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">

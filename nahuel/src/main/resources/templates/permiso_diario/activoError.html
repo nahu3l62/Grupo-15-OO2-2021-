@@ -39,28 +39,32 @@
 			</nav>
 		</header>
 	</header>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-
-<table class="table">
-	<thead class="thead-dark">
-		<form th:action="@{/permiso_periodo/}" method="get">
-			<div style="text-align:center;">
-				<label>Ingrese el número de documento:</label>
-				<input type="number" th:name="dni" />
-				<button type="submit" class="btn btn-primary">Buscar</button>
-			</div>
-		</form>
-		</tbody>
-</table>
+<div style="text-align:center;">
+	<table class="table">
+		<thead class="thead-dark">
+			<form th:action="@{/permiso_diario/}" method="get">
+				<div style="text-align:center;">
+					<label>Ingrese el número de documento:</label>
+					<input type="number" th:name="dni" />
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</div>
+			</form>
+			</tbody>
+	</table>
+	<div class="form-text text-danger" th:text="${titulo}" style="text-align:center;"></div>
+	<br>
+	<a class="btn btn-success btn-sm" href="/persona/" th:text="Crear" title="crear"></a>
+</div>
 
 	
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">

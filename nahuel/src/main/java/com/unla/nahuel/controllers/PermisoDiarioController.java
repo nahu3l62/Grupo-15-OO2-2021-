@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,9 @@ public class PermisoDiarioController {
 	@Qualifier("permisoService")
 	private IPermisoService permisoService;
 	
+	
+	
+	
 	@GetMapping("/seleccionarDni")
 	public String seleccionarDni(Model model) {
 		model.addAttribute("titulo", "Seleccione el dni");
@@ -52,10 +56,13 @@ public class PermisoDiarioController {
 	
 	@RequestMapping("/")
 	public String crear(@RequestParam long dni, Model model) {
-		
 		PermisoDiario permiso = new PermisoDiario();
 		List<Persona> personas = new ArrayList<Persona>();
 		Persona persona = personaService.findByDni(dni);
+		if(persona==null) {
+			model.addAttribute("titulo", "La persona con ese número de documento no existe en la base de datos, por favor crearla.");
+			return ViewRouteHelper.PERMISO_DIARIO_ERROR;
+		}
 		personas.add(persona);
 		List<Lugar> lugares = lugarService.getAll();
 		model.addAttribute("titulo", "Nuevo Permiso");
@@ -67,7 +74,6 @@ public class PermisoDiarioController {
 	
 	@PostMapping("/")
 	public String guardar(@Valid PermisoDiario permiso, BindingResult result,Model model) {
-		
 		List<Persona> personas = personaService.getAll();
 		List<Lugar> lugares = lugarService.getAll();
 		if(result.hasErrors()) {

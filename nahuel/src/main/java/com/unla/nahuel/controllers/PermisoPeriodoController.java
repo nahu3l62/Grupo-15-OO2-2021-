@@ -49,15 +49,18 @@ public class PermisoPeriodoController {
 	
 	@GetMapping("/seleccionarDni")
 	public String seleccionarDni(Model model) {
-		model.addAttribute("titulo", "Seleccione el dni");
 		return ViewRouteHelper.PERMISO_PERIODO_SELECCIONAR_DNI;
 	}
 	
-	@GetMapping("/")
+	@RequestMapping("/")
 	public String crear(@RequestParam long dni, Model model) {
 		PermisoPeriodo permiso = new PermisoPeriodo();
 		List<Persona> personas = new ArrayList<Persona>();
 		Persona persona = personaService.findByDni(dni);
+		if(persona==null) {
+			model.addAttribute("titulo", "La persona con ese número de documento no existe en la base de datos, por favor crearla.");
+			return ViewRouteHelper.PERMISO_PERIODO_ERROR;
+		}
 		personas.add(persona);
 		List<Lugar> lugares = lugarService.getAll();
 		List<Rodado> rodados = rodadoService.getAll();
