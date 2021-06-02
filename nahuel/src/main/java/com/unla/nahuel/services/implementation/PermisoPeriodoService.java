@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.unla.nahuel.entities.PermisoPeriodo;
@@ -35,4 +36,9 @@ public class PermisoPeriodoService implements IPermisoPeriodoService {
 	public void eliminar(long id) {
 		permisoPeriodoRepository.deleteById(id);
 	}
+	
+	public List<PermisoPeriodo> findByIdAndFetchRodadoEagerly(@Param("idRodado") long idRodado){
+		return permisoPeriodoRepository.findByIdAndFetchRodadoEagerly(idRodado);
+	}
+
 }

@@ -2,6 +2,8 @@ package com.unla.nahuel.services;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.unla.nahuel.entities.PermisoPeriodo;
 
 public interface IPermisoPeriodoService {
@@ -13,4 +15,7 @@ public interface IPermisoPeriodoService {
 	public void eliminar(long id);
 	
 	public void save(PermisoPeriodo permiso);
+	
+	public List<PermisoPeriodo> findByIdAndFetchRodadoEagerly(@Param("idRodado") long idRodado);
+
 }

@@ -30,10 +30,6 @@ public class PermisoPeriodoController {
 	
 	
 	@Autowired
-	@Qualifier("permisoPeriodoRepository")
-	private IPermisoPeriodoRepository permisoPeriodoRepository;
-	
-	@Autowired
 	@Qualifier("permisoPeriodoService")
 	private IPermisoPeriodoService permisoPeriodoService;
 	
@@ -94,7 +90,7 @@ public class PermisoPeriodoController {
 
 	@GetMapping("rodados/{id}")
 	public String editar2(@PathVariable("id") long id, Model model) {
-		List<PermisoPeriodo> listado = permisoPeriodoRepository.findByIdAndFetchRodadoEagerly(id);
+		List<PermisoPeriodo> listado = permisoPeriodoService.findByIdAndFetchRodadoEagerly(id);
 		Rodado r = rodadoService.buscar(id);
 		model.addAttribute("titulo", "Permisos por periodo de " + r.getDominio());
 		model.addAttribute("lista", listado);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.unla.nahuel.entities.Rodado;
@@ -36,5 +37,11 @@ public class RodadoService implements IRodadoService {
 	public void eliminar(long id) {
 		rodadoRepository.deleteById(id);
 	}
+	
+	@Override
+	public Rodado findByDominio(@Param("dominio") String dominio) {
+		return rodadoRepository.findByDominio(dominio);
+	};
+
 
 }

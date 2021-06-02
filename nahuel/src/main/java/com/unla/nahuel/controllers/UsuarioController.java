@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +69,21 @@ public class UsuarioController {
 			if (p.isDeshabilitado() == true) {
 				perfiles.add(p);
 			}
+		}
+		
+		if(usuarioService.findByDni(usuario.getDocumento())!=null) {
+			FieldError error = new FieldError("usuario", "documento", "Ya existe una persona con ese DNI");
+			result.addError(error);
+		}
+		
+		if(usuarioService.findByEmail(usuario.getCorreoElectronico())!=null) {
+			FieldError error = new FieldError("usuario", "correoElectronico", "Ya existe una persona con ese correo electronico");
+			result.addError(error);
+		}
+		
+		if(usuarioService.findByUsername(usuario.getNombreDeUsuario())!=null) {
+			FieldError error = new FieldError("usuario", "nombreDeUsuario", "Ya existe una persona con ese nombre de usuario");
+			result.addError(error);
 		}
 		
 		if(result.hasErrors()) {

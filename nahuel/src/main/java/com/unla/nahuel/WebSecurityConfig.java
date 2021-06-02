@@ -39,6 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/permiso/activo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
 		.antMatchers("/permiso/fecha").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo(diario)
 		.antMatchers("/permiso/activoDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
+		.antMatchers("/permiso/activoFechaLugarDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
+		.antMatchers("/permiso/activoFechaLugarPeriodo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
+		.antMatchers("/permiso/traerFechaLugarDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
+		.antMatchers("/permiso/traerFechaLugarPeriodo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
 		.antMatchers("/permiso/fechaDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo(periodo)
 		.antMatchers("/permiso/lista/permisoDiario/**").permitAll()//traer permiso por persona(diario)
 		.antMatchers("/permiso/lista/permisoPeriodo/**").permitAll()//traer permiso por persona(periodo)

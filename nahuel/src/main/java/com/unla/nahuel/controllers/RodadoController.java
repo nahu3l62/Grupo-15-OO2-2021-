@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,11 @@ public class RodadoController {
 	
 	@PostMapping("/")
 	public String guardar (@Valid @ModelAttribute Rodado rodado, BindingResult result, Model model) {
+		
+		if(rodadoService.findByDominio(rodado.getDominio())!=null) {
+			FieldError error = new FieldError("rodado", "dominio", "Ya existe un Rodado con ese dominio.");
+			result.addError(error);
+		}
 		
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario: Nuevo Rodado");
