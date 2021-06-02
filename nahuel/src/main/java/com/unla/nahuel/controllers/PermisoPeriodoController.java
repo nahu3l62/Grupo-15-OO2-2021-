@@ -1,5 +1,6 @@
 package com.unla.nahuel.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.PermisoPeriodo;
@@ -49,11 +51,18 @@ public class PermisoPeriodoController {
 	@Qualifier("rodadoService")
 	private IRodadoService rodadoService;
 	
+	@GetMapping("/seleccionarDni")
+	public String seleccionarDni(Model model) {
+		model.addAttribute("titulo", "Seleccione el dni");
+		return ViewRouteHelper.PERMISO_PERIODO_SELECCIONAR_DNI;
+	}
 	
 	@GetMapping("/")
-	public String crear(Model model) {
+	public String crear(@RequestParam long dni, Model model) {
 		PermisoPeriodo permiso = new PermisoPeriodo();
-		List<Persona> personas = personaService.getAll();
+		List<Persona> personas = new ArrayList<Persona>();
+		Persona persona = personaService.findByDni(dni);
+		personas.add(persona);
 		List<Lugar> lugares = lugarService.getAll();
 		List<Rodado> rodados = rodadoService.getAll();
 		model.addAttribute("titulo", "Nuevo Permiso");
@@ -80,7 +89,7 @@ public class PermisoPeriodoController {
 		}	
 		permisoPeriodoService.save(permiso);
 		System.out.println("Permiso guardado con exito!");
-		return ViewRouteHelper.PERMISO_PERIODO_REDIRECT;	
+		return ViewRouteHelper.PERMISO_PERIODO_SELECCIONAR_DNI;	
 	}
 	
 	@GetMapping("/lista")

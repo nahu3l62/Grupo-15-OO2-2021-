@@ -32,10 +32,12 @@ public class ViewRouteHelper {
 
 	
 	//PermisoDiario
+	public final static String PERMISO_DIARIO_SELECCIONAR_DNI = "permiso_diario/activo";
 	public final static String PERMISO_DIARIO_CREAR = "permiso_diario/crear";
 	public final static String PERMISO_DIARIO_LISTA = "permiso_diario/lista";
 	
 	//PermisoPeriodo
+	public final static String PERMISO_PERIODO_SELECCIONAR_DNI = "permiso_periodo/activo";
 	public final static String PERMISO_PERIODO_CREAR = "permiso_periodo/crear";
 	public final static String PERMISO_PERIODO_LISTA = "permiso_periodo/lista";
 	public final static String PERMISO_PERIODO_RODADO = "permiso_periodo/rodado";	
