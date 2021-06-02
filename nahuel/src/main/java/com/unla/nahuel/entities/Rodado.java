@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
-//comentario
 
 @Entity
 @Table(name = "rodado", uniqueConstraints = {
