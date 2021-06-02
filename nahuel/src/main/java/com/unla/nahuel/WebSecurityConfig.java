@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/perfiles/lista/delete/**").hasAuthority("Administrador")
 		.antMatchers("/perfiles/lista").permitAll()
 		.antMatchers("/rodado/").permitAll()
-		.antMatchers("/rodado/lista").permitAll()
+		.antMatchers("/rodado/lista").hasAnyAuthority("Auditor", "Administrador")
 		.antMatchers("/usuarios/").hasAuthority("Administrador")
 		.antMatchers("/usuarios/lista").permitAll()
 		.antMatchers("/usuarios/lista/edit/**").hasAuthority("Administrador")
