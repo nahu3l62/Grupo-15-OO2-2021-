@@ -33,34 +33,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers("/index","/","/css/**","/images/**","/js/**","/vendor/**").permitAll()
 		.antMatchers("/permiso/").permitAll()//traer permiso por persona
-		.antMatchers("/permiso/lugar").hasAnyAuthority("Auditor", "Administrador")//traer permiso por lugar
-		.antMatchers("/permiso/periodoXlugar/**").hasAnyAuthority("Auditor", "Administrador")//traer permiso por lugar(diario)
-		.antMatchers("/permiso/diarioXlugar/**").hasAnyAuthority("Auditor", "Administrador")//traer permiso por lugar(periodo)
-		.antMatchers("/permiso/activo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
-		.antMatchers("/permiso/fecha").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo(diario)
-		.antMatchers("/permiso/activoDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
-		.antMatchers("/permiso/activoFechaLugarDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
-		.antMatchers("/permiso/activoFechaLugarPeriodo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
-		.antMatchers("/permiso/traerFechaLugarDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
-		.antMatchers("/permiso/traerFechaLugarPeriodo").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo
-		.antMatchers("/permiso/fechaDiario").hasAnyAuthority("Auditor", "Administrador")//traer permiso activo(periodo)
+		.antMatchers("/permiso/lugar").hasAuthority("Auditor")//traer permiso por lugar
+		.antMatchers("/permiso/periodoXlugar/**").hasAuthority("Auditor")//traer permiso por lugar(diario)
+		.antMatchers("/permiso/diarioXlugar/**").hasAuthority("Auditor")//traer permiso por lugar(periodo)
+		.antMatchers("/permiso/activo").hasAuthority("Auditor")//traer permiso activo
+		.antMatchers("/permiso/fecha").hasAuthority("Auditor")//traer permiso activo(diario)
+		.antMatchers("/permiso/activoDiario").hasAuthority("Auditor")//traer permiso activo
+		.antMatchers("/permiso/activoFechaLugarDiario").hasAuthority("Auditor")//traer permiso activo
+		.antMatchers("/permiso/activoFechaLugarPeriodo").hasAuthority("Auditor")//traer permiso activo
+		.antMatchers("/permiso/traerFechaLugarDiario").hasAuthority("Auditor")//traer permiso activo
+		.antMatchers("/permiso/traerFechaLugarPeriodo").hasAuthority("Auditor")//traer permiso activo
+		.antMatchers("/permiso/fechaDiario").hasAuthority("Auditor")//traer permiso activo(periodo)
 		.antMatchers("/permiso/lista/permisoDiario/**").permitAll()//traer permiso por persona(diario)
 		.antMatchers("/permiso/lista/permisoPeriodo/**").permitAll()//traer permiso por persona(periodo)
 		.antMatchers("/permiso_diario/").permitAll()
 		.antMatchers("/permiso_diario/lista").permitAll()
+		.antMatchers("/permiso_diario/seleccionarDni").permitAll()
 		.antMatchers("/permiso_periodo/").permitAll()
 		.antMatchers("/permiso_periodo/lista").permitAll()
-		.antMatchers("/permiso_periodo/rodados/**").hasAnyAuthority("Auditor", "Administrador")	
+		.antMatchers("/permiso_periodo/seleccionarDni").permitAll()
+		.antMatchers("/permiso_periodo/rodados/**").hasAuthority("Auditor")
 		.antMatchers("/persona/").permitAll()
 		.antMatchers("/perfiles/").hasAuthority("Administrador")
-		.antMatchers("/perfiles/lista").permitAll()
+		.antMatchers("/perfiles/lista").hasAnyAuthority("Auditor", "Administrador")
 		.antMatchers("/perfiles/lista/edit/**").hasAuthority("Administrador")
 		.antMatchers("/perfiles/lista/delete/**").hasAuthority("Administrador")
-		.antMatchers("/perfiles/lista").permitAll()
+		.antMatchers("/perfiles/lista").hasAnyAuthority("Auditor", "Administrador")
+		.antMatchers("/perfiles/lista/**").hasAnyAuthority("Auditor", "Administrador")//pdf
 		.antMatchers("/rodado/").permitAll()
-		.antMatchers("/rodado/lista").hasAnyAuthority("Auditor", "Administrador")
+		.antMatchers("/rodado/lista").hasAuthority("Auditor")
 		.antMatchers("/usuarios/").hasAuthority("Administrador")
-		.antMatchers("/usuarios/lista").permitAll()
+		.antMatchers("/usuarios/lista").hasAnyAuthority("Auditor", "Administrador")
+		.antMatchers("/usuarios/lista/**").hasAnyAuthority("Auditor", "Administrador")//pdf
 		.antMatchers("/usuarios/lista/edit/**").hasAuthority("Administrador")
 		.antMatchers("/usuarios/lista/delete/**").hasAuthority("Administrador")
 		.anyRequest().authenticated()

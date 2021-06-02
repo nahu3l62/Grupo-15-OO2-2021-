@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -39,12 +39,17 @@
 							<a class="dropdown-item" href="/permiso_diario/seleccionarDni">Crear Permiso Diario</a>
 							<a class="dropdown-item" href="/permiso_periodo/seleccionarDni">Crear Permiso Periodo</a>
 							<a class="dropdown-item" href="/permiso/">Traer Permiso Por Persona</a>
-							<a class="dropdown-item" href="/rodado/lista">Traer Permiso Por Rodado</a>
-							<a class="dropdown-item" href="/permiso/activo">Permisos periodos Activos</a>
-							<a class="dropdown-item" href="/permiso/activoDiario">Permisos diario Activos</a>
-							<a class="dropdown-item" href="/permiso/activoFechaLugarDiario">Traer por lugar diario</a>
-							<a class="dropdown-item" href="/permiso/activoFechaLugarPeriodo">Traer por lugar periodo</a>
-							
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/rodado/lista/}">Traer Permiso Por Rodado</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activo/}">Permisos periodos Activos</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activoDiario/}">Permisos diario Activos</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activoFechaLugarDiario/}">Traer por lugar diario</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activoFechaLugarPeriodo/}">Traer por lugar periodo</a>
+
 						</div>
 					</li>
 					<li class="nav-item">
@@ -54,25 +59,29 @@
 						<a class="nav-link" href="/rodado/">Crear rodado</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/usuarios/lista">Usuarios</a>
+						<a class="nav-link" sec:authorize="hasAnyAuthority('Auditor', 'Administrador')"
+							th:href="@{/usuarios/lista/}">Usuarios</a>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="/perfiles/lista">Perfiles</a>
+						<a class="nav-link" sec:authorize="hasAnyAuthority('Auditor', 'Administrador')"
+							th:href="@{/perfiles/lista/}">Perfiles</a>
 					</li>
 
 					<li class="nav-item dropdown">
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
 							data-toggle="dropdown" href="#" id="navbarDropdownBlog">Mi Usuario</a>
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
-							<form th:action="@{/logout}" method="post">
+							<form sec:authorize="anonymous" th:action="@{/login}" method="post">
 								<input class="dropdown-item" style="cursor:pointer" type="submit"
-									value="Cerrar sesion" />
+									value="Iniciar sesión" />
 							</form>
-							<form th:action="@{/login}" method="post">
+
+							<form sec:authorize="authenticated" th:action="@{/logout}" method="post">
 								<input class="dropdown-item" style="cursor:pointer" type="submit"
-									value="Iniciar sesion" />
+									value="Cerrar sesión" />
 							</form>
+
 						</div>
 					</li>
 			</div>
