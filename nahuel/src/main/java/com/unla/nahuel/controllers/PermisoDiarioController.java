@@ -46,8 +46,6 @@ public class PermisoDiarioController {
 	private IPermisoService permisoService;
 	
 	
-	
-	
 	@GetMapping("/seleccionarDni")
 	public String seleccionarDni(Model model) {
 		model.addAttribute("titulo", "Seleccione el dni");

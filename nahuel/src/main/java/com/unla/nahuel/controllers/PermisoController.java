@@ -1,6 +1,7 @@
 package com.unla.nahuel.controllers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,15 +44,25 @@ public class PermisoController {
 	@Qualifier("permisoDiarioService")
 	private IPermisoDiarioService permisoDiarioService;
 	
-	
 	@Autowired
 	@Qualifier("lugarService")
 	private ILugarService lugarService;
+	
+	@GetMapping("/seleccionarDni")
+	public String seleccionarDni(Model model) {
+		return ViewRouteHelper.PERMISO_SELECCIONAR_DNI;
+	}
 
 	@GetMapping("/")
-	public String listarClientes(Model model) {
-		List<Persona> personas = personaService.getAll();
-		model.addAttribute("titulo", "Personas");
+	public String listarClientes(@RequestParam long dni, Model model) {
+		List<Persona> personas = new ArrayList<Persona>();
+		model.addAttribute("titulo", "Persona");
+		Persona persona = personaService.findByDni(dni);
+		if(persona==null) {
+			model.addAttribute("titulo", "La persona con ese número de documento no existe en la base de datos, por favor crearla.");
+			return ViewRouteHelper.PERMISO_SELECCIONAR_DNI_ERROR;
+		}
+		personas.add(persona);
 		model.addAttribute("personas", personas);
 		return ViewRouteHelper.PERMISO_CREAR;
 	}

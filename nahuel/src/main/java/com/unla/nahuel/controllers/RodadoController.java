@@ -2,6 +2,7 @@ package com.unla.nahuel.controllers;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unla.nahuel.entities.Rodado;
 import com.unla.nahuel.helpers.ViewRouteHelper;
@@ -27,6 +29,25 @@ public class RodadoController {
 	@Autowired
 	@Qualifier("rodadoService")
 	private IRodadoService rodadoService;
+	
+	@GetMapping("/seleccionarDominio")
+	public String seleccionarDni(Model model) {
+		return ViewRouteHelper.RODADO_SELECCIONAR_DOMINIO;
+	}
+	
+	@GetMapping("/dominio")
+	public String listarRodado(@RequestParam String dominio, Model model) {
+		List<Rodado> rodados = new ArrayList<Rodado>();
+		model.addAttribute("titulo", "Rodado");
+		Rodado rodado1 = rodadoService.findByDominio(dominio);
+		if(rodado1==null) {
+			model.addAttribute("titulo", "El Rodado con ese dominio no existe en la base de datos, por favor crearla.");
+			return ViewRouteHelper.RODADO_SELECCIONAR_DOMINIO_ERROR;
+		}
+		rodados.add(rodado1);
+		model.addAttribute("lista", rodados);
+		return ViewRouteHelper.RODADO_LISTA;
+	}
 	
 	@GetMapping("/")
 	public String crear (Model model) {

@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers("/index","/","/css/**","/images/**","/js/**","/vendor/**").permitAll()
 		.antMatchers("/permiso/").permitAll()//traer permiso por persona
+		.antMatchers("/permiso/seleccionarDni").permitAll()//traer permiso por persona
 		.antMatchers("/permiso/lugar").hasAuthority("Auditor")//traer permiso por lugar
 		.antMatchers("/permiso/periodoXlugar/**").hasAuthority("Auditor")//traer permiso por lugar(diario)
 		.antMatchers("/permiso/diarioXlugar/**").hasAuthority("Auditor")//traer permiso por lugar(periodo)
@@ -61,6 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/perfiles/lista").hasAnyAuthority("Auditor", "Administrador")
 		.antMatchers("/perfiles/lista/**").hasAnyAuthority("Auditor", "Administrador")//pdf
 		.antMatchers("/rodado/").permitAll()
+		.antMatchers("/rodado/seleccionarDominio").hasAuthority("Auditor")
+		.antMatchers("/rodado/dominio").hasAuthority("Auditor")
 		.antMatchers("/rodado/lista").hasAuthority("Auditor")
 		.antMatchers("/usuarios/").hasAuthority("Administrador")
 		.antMatchers("/usuarios/lista").hasAnyAuthority("Auditor", "Administrador")

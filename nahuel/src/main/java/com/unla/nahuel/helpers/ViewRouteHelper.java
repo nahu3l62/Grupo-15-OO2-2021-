@@ -29,7 +29,10 @@ public class ViewRouteHelper {
 	public final static String PERMISO_TRAER = "permiso/traer";
 	public final static String PERMISO_ACTIVOXFECHAYLUGAR_DIARIO = "permiso/activoLugarDiario";
 	public final static String PERMISO_ACTIVOXFECHAYLUGAR_PERIODO = "permiso/activoLugarPeriodo";
-	
+	public final static String PERMISO_SELECCIONAR_DNI = "permiso/seleccionarDni";
+	public final static String PERMISO_SELECCIONAR_DNI_ERROR = "permiso/activoError";
+
+
 
 	//PermisoDiario
 	public final static String PERMISO_DIARIO_SELECCIONAR_DNI = "permiso_diario/activo";
@@ -52,6 +55,9 @@ public class ViewRouteHelper {
 	//Rodado
 	public final static String RODADO_CREAR = "rodado/crear";
 	public final static String RODADO_LISTA = "rodado/lista";
+	public final static String RODADO_SELECCIONAR_DOMINIO = "rodado/seleccionarRodado";
+	public final static String RODADO_SELECCIONAR_DOMINIO_ERROR = "rodado/activoError";
+
 
 	
 	//Perfiles
