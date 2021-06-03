@@ -31,23 +31,34 @@
 			</nav>
 		</header>
 	</header>
+	<div class="container" style="text-align:center;">
+		<h1 th:text="${titulo}"></h1>
+
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 
 	<table class="table">
 			<thead class="thead-dark">
 				<form th:action="@{/permiso/traerFechaLugarDiario}" method="get" >
+				<div style="text-align:center;">
                 <div>
-                <label>Desde</label>
-                 <input type="date" th:name="fecha1"   />
-                 <p> Lugares:
+                <p><label>Fecha</label>
+                 <input type="date" th:name="fecha1"   /></p>
+                 <p> Lugar:
 					<select th:name="idLugar">
 						<option th:each="lugar:${lugares}" th:value="${lugar.idLugar}" th:text="${lugar.lugar}" />
 					</select>
 				</p>
                  </div>
-
-                 <button type="submit">Buscar</button>
+				<br>
+                   <button type="submit" class="btn btn-primary">Buscar</button>
                  </form>
 			</tbody>
 		</table>

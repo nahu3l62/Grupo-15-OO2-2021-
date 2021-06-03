@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.PermisoDiario;
 import com.unla.nahuel.entities.Persona;
+import com.unla.nahuel.entities.Rodado;
 import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.ILugarService;
 import com.unla.nahuel.services.IPermisoDiarioService;
@@ -53,13 +55,13 @@ public class PermisoDiarioController {
 	}
 	
 	@RequestMapping("/")
-	public String crear(@RequestParam long dni, Model model) {
+	public String crear(@RequestParam long dni, Model model, RedirectAttributes attribute) {
 		PermisoDiario permiso = new PermisoDiario();
 		List<Persona> personas = new ArrayList<Persona>();
 		Persona persona = personaService.findByDni(dni);
 		if(persona==null) {
-			model.addAttribute("titulo", "La persona con ese número de documento no existe en la base de datos, por favor crearla.");
-			return ViewRouteHelper.PERMISO_DIARIO_ERROR;
+			attribute.addFlashAttribute("success","Este dni no se encuentra en la base de datos");
+			return ViewRouteHelper.PERMISO_SELECCIONAR_DNI_REDIRECT;
 		}
 		personas.add(persona);
 		List<Lugar> lugares = lugarService.getAll();
@@ -85,7 +87,6 @@ public class PermisoDiarioController {
 		permisoDiarioService.save(permiso);
 		System.out.println("Permiso guardado con exito!");
 		return ViewRouteHelper.PERMISO_DIARIO_SELECCIONAR_DNI;
-		
 	}
 
 

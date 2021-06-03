@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unla.nahuel.entities.Rodado;
 import com.unla.nahuel.helpers.ViewRouteHelper;
@@ -36,13 +37,13 @@ public class RodadoController {
 	}
 	
 	@GetMapping("/dominio")
-	public String listarRodado(@RequestParam String dominio, Model model) {
+	public String listarRodado(@RequestParam String dominio, Model model,RedirectAttributes attribute) {
 		List<Rodado> rodados = new ArrayList<Rodado>();
 		model.addAttribute("titulo", "Rodado");
 		Rodado rodado1 = rodadoService.findByDominio(dominio);
 		if(rodado1==null) {
-			model.addAttribute("titulo", "El Rodado con ese dominio no existe en la base de datos, por favor crearla.");
-			return ViewRouteHelper.RODADO_SELECCIONAR_DOMINIO_ERROR;
+			attribute.addFlashAttribute("success","Este dominio no se encuentra en la base de datos");
+			return ViewRouteHelper.RODADO_SELECCIONAR_DOMINIO_REDIRECT;
 		}
 		rodados.add(rodado1);
 		model.addAttribute("lista", rodados);
@@ -58,7 +59,7 @@ public class RodadoController {
 	}
 	
 	@PostMapping("/")
-	public String guardar (@Valid @ModelAttribute Rodado rodado, BindingResult result, Model model) {
+	public String guardar (@Valid @ModelAttribute Rodado rodado, BindingResult result, Model model,RedirectAttributes attribute) {
 		if(rodadoService.findByDominio(rodado.getDominio())!=null) {
 			FieldError error = new FieldError("rodado", "dominio", "Ya existe un Rodado con ese dominio.");
 			result.addError(error);
@@ -71,6 +72,7 @@ public class RodadoController {
 		}
 		rodadoService.save(rodado);
 		System.out.println("Usuario guardado con exito!");
+		attribute.addFlashAttribute("success","Rodado agregado con exito");
 		return ViewRouteHelper.RODADO_REDIRECT;
 	}
 	

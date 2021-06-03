@@ -29,6 +29,11 @@
 				</ul>
 				</div>
 			</nav>
+			<div class="alert alert-danger alert-dismissable" th:if="${success != null}">
+				<label th:text="${success}"></label>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+
 		</header>
 	</header>
 	<br>
@@ -40,7 +45,8 @@
 	<br>
 	<br>
 	<br>
-
+	
+	
 
 	<table class="table">
 			<thead class="thead-dark">

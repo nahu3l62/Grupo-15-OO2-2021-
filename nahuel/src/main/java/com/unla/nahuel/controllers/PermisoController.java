@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoDiario;
@@ -54,13 +56,13 @@ public class PermisoController {
 	}
 
 	@GetMapping("/")
-	public String listarClientes(@RequestParam long dni, Model model) {
+	public String listarClientes(@RequestParam long dni, Model model,RedirectAttributes attribute) {
 		List<Persona> personas = new ArrayList<Persona>();
 		model.addAttribute("titulo", "Persona");
 		Persona persona = personaService.findByDni(dni);
 		if(persona==null) {
-			model.addAttribute("titulo", "La persona con ese número de documento no existe en la base de datos, por favor crearla.");
-			return ViewRouteHelper.PERMISO_SELECCIONAR_DNI_ERROR;
+			attribute.addFlashAttribute("success","Este dni no se encuentra en la base de datos");
+			return ViewRouteHelper.PERMISO_DNI_REDIRECT;
 		}
 		personas.add(persona);
 		model.addAttribute("personas", personas);
@@ -87,7 +89,7 @@ public class PermisoController {
 	
 	@GetMapping("/activo")
 	public String activoPeriodo(Model model) {
-		model.addAttribute("titulo", "Permisos");
+		model.addAttribute("titulo", "Permisos periodos activos");
 		return ViewRouteHelper.PERMISO_ACTIVO;
 	}
 	
@@ -102,7 +104,7 @@ public class PermisoController {
 
 	@GetMapping("/activoDiario")
 	public String activoDiario(Model model) {
-		model.addAttribute("titulo", "Permisos");
+		model.addAttribute("titulo", "Permisos diarios activos");
 		return ViewRouteHelper.PERMISO_DIARIO;
 	}
 	
@@ -126,7 +128,7 @@ public class PermisoController {
 	@GetMapping("/activoFechaLugarPeriodo")
 	public String periodoXFechaYLugar(Model model) {
 		List<Lugar> lugares = lugarService.getAll();
-		model.addAttribute("titulo", "Lugares");
+		model.addAttribute("titulo", "Traer permisos periodos entre fecha y fecha que lleguen o salgan desde un lugar determinado");
 		model.addAttribute("lugares", lugares);
 		return ViewRouteHelper.PERMISO_ACTIVOXFECHAYLUGAR_PERIODO;
 	}
@@ -145,7 +147,7 @@ public class PermisoController {
 	@GetMapping("/activoFechaLugarDiario")
 	public String diarioXFechaYLugar(Model model) {
 		List<Lugar> lugares = lugarService.getAll();
-		model.addAttribute("titulo", "Permisos");
+		model.addAttribute("titulo", "Traer permisos diarios con fecha que lleguen o salgan desde un lugar determinado");
 		model.addAttribute("lugares", lugares);
 		return ViewRouteHelper.PERMISO_ACTIVOXFECHAYLUGAR_DIARIO;
 	}

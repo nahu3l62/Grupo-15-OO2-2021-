@@ -30,20 +30,32 @@
 			</nav>
 		</header>
 	</header>
+	<div class="container" style="text-align:center;">
+		<h1 th:text="${titulo}"></h1>
 
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
+	
 
 	<table class="table">
 			<thead class="thead-dark">
 				<form th:action="@{/permiso/fecha}" method="get" >
+				<div style="text-align:center;">
                 <div>
-                <label>Desde</label>
-                 <input type="date" th:name="fecha1"   />
-                 <label>Hasta</label>
-                 <input type="date" th:name="fecha2"  />
+                <p><label>Desde</label>
+                 <input type="date" th:name="fecha1"   /></p>
+                <p> <label>Hasta</label>
+                 <input type="date" th:name="fecha2"  /></p>
                  </div>
-
-                 <button type="submit">Buscar</button>
+				<br>
+                   <button type="submit" class="btn btn-primary">Buscar</button>
+                 </div>
                  </form>
 			</tbody>
 		</table>
