@@ -13,16 +13,16 @@ public class Lugar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idLugar;
-	
+
 	@Column(name = "lugar")
 	private String lugar;
-	
+
 	@Column(name = "codPostal")
 	private String codPostal;
-	
+
 	public Lugar() {
 	}
-	
+
 	public Lugar(String lugar, String codPostal) {
 		super();
 		this.lugar = lugar;
@@ -53,10 +53,9 @@ public class Lugar {
 		this.codPostal = codPostal;
 	}
 
-
 	@Override
 	public String toString() {
-		return lugar + " - CodigoPostal: " + codPostal;
+		return "Lugar: " + lugar + " CodigoPostal: " + codPostal;
 	}
-	
+
 }

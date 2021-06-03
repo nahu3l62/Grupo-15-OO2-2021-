@@ -10,20 +10,21 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @Table(name = "permisoDiario")
-@PrimaryKeyJoinColumn(referencedColumnName="idPermiso") 
+@PrimaryKeyJoinColumn(referencedColumnName = "idPermiso")
 public class PermisoDiario extends Permiso {
-	
+
 	@Column(name = "motivo")
-	@NotEmpty(message="Ingrese el motivo porfavor!")
+	@NotEmpty(message = "Ingrese el motivo porfavor!")
 	private String motivo;
 
-	public PermisoDiario() {}
-	
+	public PermisoDiario() {
+	}
+
 	public PermisoDiario(LocalDate fecha, Persona persona, String motivo) {
 		super(fecha, persona);
 		this.motivo = motivo;
 	}
-	
+
 	public String getMotivo() {
 		return motivo;
 	}
@@ -34,11 +35,7 @@ public class PermisoDiario extends Permiso {
 
 	@Override
 	public String toString() {
-		return "PermisoDiario [motivo=" + motivo + "]";
+		return "PermisoDiario: Motivo: " + motivo;
 	}
-	
-	
-	
-	
 
 }

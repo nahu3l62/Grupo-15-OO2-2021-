@@ -11,36 +11,34 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "persona", uniqueConstraints = {
-@UniqueConstraint(columnNames = {"dni"})
-})
+@Table(name = "persona", uniqueConstraints = { @UniqueConstraint(columnNames = { "dni" }) })
 
 public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPersona;
-	
+
 	@Column(name = "nombre")
 	@NotEmpty
 	private String nombre;
-	
+
 	@Column(name = "apellido")
 	@NotEmpty
 	private String apellido;
-	
+
 	@Column(name = "dni")
 	@NotNull
 	private long dni;
-	
-	public Persona() {}
 
-	public Persona(String nombre, String apellido , long dni) {
+	public Persona() {
+	}
+
+	public Persona(String nombre, String apellido, long dni) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
 	}
-
 
 	public long getIdPersona() {
 		return idPersona;
@@ -74,10 +72,9 @@ public class Persona {
 		this.dni = dni;
 	}
 
-
 	@Override
 	public String toString() {
-		return " Apellido: " + apellido + "- Nombre: " + nombre + "- Dni: " + dni;
+		return " Apellido: " + apellido + " Nombre: " + nombre + " Dni: " + dni;
 	}
 
 }

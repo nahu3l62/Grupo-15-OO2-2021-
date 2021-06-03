@@ -26,29 +26,29 @@ public abstract class Permiso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected long idPermiso;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha")
-	@NotNull(message="Fecha incorrecta!")
+	@NotNull(message = "Fecha incorrecta!")
 	protected LocalDate fecha;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "persona_idPersona")
 	protected Persona persona;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="lugar_idLugar", nullable=false)
+	@JoinColumn(name = "lugar_idLugar", nullable = false)
 	protected Set<Lugar> desdeHasta;
 
-	public Permiso() {}
+	public Permiso() {
+	}
 
 	public Permiso(LocalDate fecha, Persona persona) {
 		super();
 		this.fecha = fecha;
 		this.setPersona(persona);
 	}
-	
-	
+
 	public Permiso(LocalDate fecha, Persona persona, Set<Lugar> desdeHasta) {
 		super();
 		this.fecha = fecha;
@@ -90,13 +90,8 @@ public abstract class Permiso {
 
 	@Override
 	public String toString() {
-		return "Permiso idPermiso=" + idPermiso + ", fecha=" + fecha + ", persona=" + persona + ", desdeHasta="
+		return "Permiso idPermiso: " + idPermiso + " Fecha: " + fecha + " Persona: " + persona + " DesdeHasta: "
 				+ desdeHasta;
 	}
-
-	
-
-	
-
 
 }

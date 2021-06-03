@@ -12,17 +12,17 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "permisoPeriodo")
-@PrimaryKeyJoinColumn(referencedColumnName="idPermiso") 
+@PrimaryKeyJoinColumn(referencedColumnName = "idPermiso")
 public class PermisoPeriodo extends Permiso {
-	
+
 	@Column(name = "cantDias")
 	@NotNull
 	private int cantDias;
-	
+
 	@Column(name = "vacaciones")
-	@NotNull(message="Porfavor seleccione la opcion correcta!")
+	@NotNull(message = "Porfavor seleccione la opcion correcta!")
 	private boolean vacaciones;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "rodado_idRodado")
 	private Rodado rodado;
@@ -60,7 +60,7 @@ public class PermisoPeriodo extends Permiso {
 	public void setRodado(Rodado rodado) {
 		this.rodado = rodado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PermisoPeriodo: " + getIdPermiso() + " CantDias: " + cantDias + " Vacaciones: " + vacaciones;

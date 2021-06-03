@@ -9,35 +9,31 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
-
 @Entity
-@Table(name = "rodado", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"dominio"})
-		})
-
+@Table(name = "rodado", uniqueConstraints = { @UniqueConstraint(columnNames = { "dominio" }) })
 
 public class Rodado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idRodado;
-	
+
 	@Column(name = "dominio")
 	@NotEmpty
 	private String dominio;
-	
+
 	@Column(name = "vehiculo")
 	@NotEmpty
 	private String vehiculo;
-	
 
-	public Rodado() {}
+	public Rodado() {
+	}
 
 	public Rodado(String dominio, String vehiculo) {
 		super();
 		this.dominio = dominio;
 		this.vehiculo = vehiculo;
 	}
-	
+
 	public long getIdRodado() {
 		return idRodado;
 	}
@@ -64,7 +60,7 @@ public class Rodado {
 
 	@Override
 	public String toString() {
-		return " Dominio: " + dominio + "-Vehiculo: " + vehiculo;
+		return " Dominio: " + dominio + " Vehiculo: " + vehiculo;
 	}
 
 }
