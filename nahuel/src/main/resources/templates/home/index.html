@@ -36,8 +36,8 @@
 						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
 							data-toggle="dropdown" href="#" id="navbarDropdownBlog" sec:authorize="anonymous or hasAuthority('Auditor')">Permiso</a>
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" sec:authorize="anonymous" th:action="@{permiso_diario/seleccionarDni}">Crear Permiso Diario</a>
-							<a class="dropdown-item" sec:authorize="anonymous" th:action="@{permiso_periodo/seleccionarDni}">Crear Permiso Periodo</a>
+							<a class="dropdown-item" sec:authorize="anonymous" th:href="@{permiso_diario/seleccionarDni}">Crear Permiso Diario</a>
+							<a class="dropdown-item" sec:authorize="anonymous" th:href="@{permiso_periodo/seleccionarDni}">Crear Permiso Periodo</a>
 							<a class="dropdown-item" href="/permiso/seleccionarDni">Traer Permiso Por Persona</a>
 							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
 								th:href="@{/rodado/seleccionarDominio}">Traer Permiso Por Rodado</a>
@@ -53,10 +53,10 @@
 						</div>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" sec:authorize="anonymous" th:action="@{persona/}">Crear Persona</a>
+						<a class="nav-link" sec:authorize="anonymous" th:href="@{persona/}">Crear Persona</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" sec:authorize="anonymous" th:action="@{rodado}">Crear rodado</a>
+						<a class="nav-link" sec:authorize="anonymous" th:href="@{/rodado/}">Crear rodado</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" sec:authorize="hasAnyAuthority('Auditor', 'Administrador')"
