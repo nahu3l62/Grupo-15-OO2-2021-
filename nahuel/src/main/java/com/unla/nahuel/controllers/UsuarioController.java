@@ -66,15 +66,15 @@ public class UsuarioController {
 				perfiles.add(p);
 			}
 		}
-		if(usuarioService.findByDni(usuario.getDocumento())!=null) {
+		if(usuarioService.findByDni(usuario.getDocumento())!=null && usuarioService.findByDni(usuario.getDocumento()).getId()!=usuario.getId()) {
 			FieldError error = new FieldError("usuario", "documento", "Ya existe una persona con ese DNI");
 			result.addError(error);
 		}
-		if(usuarioService.findByEmail(usuario.getCorreoElectronico())!=null) {
+		if(usuarioService.findByEmail(usuario.getCorreoElectronico())!=null && usuarioService.findByEmail(usuario.getCorreoElectronico()).getId()!=usuario.getId()) {
 			FieldError error = new FieldError("usuario", "correoElectronico", "Ya existe una persona con ese correo electronico");
 			result.addError(error);
 		}
-		if(usuarioService.findByUsername(usuario.getNombreDeUsuario())!=null) {
+		if(usuarioService.findByUsername(usuario.getNombreDeUsuario())!=null && usuarioService.findByUsername(usuario.getNombreDeUsuario()).getId()!=usuario.getId()) {
 			FieldError error = new FieldError("usuario", "nombreDeUsuario", "Ya existe una persona con ese nombre de usuario");
 			result.addError(error);
 		}
