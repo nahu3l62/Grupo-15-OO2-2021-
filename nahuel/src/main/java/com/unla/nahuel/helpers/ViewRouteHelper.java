@@ -60,9 +60,6 @@ public class ViewRouteHelper {
 	public final static String RODADO_SELECCIONAR_DOMINIO = "rodado/seleccionarRodado";
 	public final static String RODADO_SELECCIONAR_DOMINIO_REDIRECT = "redirect:/rodado/seleccionarDominio";
 
-
-
-	
 	//Perfiles
 	public final static String PERFIL_CREAR = "perfil/crear";
 	public final static String PERFIL_LISTA = "perfil/lista";
@@ -70,10 +67,6 @@ public class ViewRouteHelper {
 	//Redirects
 	public final static String ROUTE = "/index";
 	public final static String USUARIO_ROOT = "/usuarios/";
-
-	
-	/*public final static String USER_LOGIN = "user/login";
-	public final static String USER_LOGOUT = "user/logout";*/
 
 	
 	
