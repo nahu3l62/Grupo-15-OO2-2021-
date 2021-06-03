@@ -43,7 +43,11 @@
 						<option th:each="persona:${personas}" th:value="${persona.idPersona}" th:text="${persona.nombre}+' '+${persona.apellido}+' '+${persona.dni}" />
 					</select>
 				</p>
-				<p> Fecha: <input type="date" th:field="*{fecha}"/></p>
+				<p> Fecha: <input type="date" th:field="*{fecha}"/>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('fecha')}"
+					th:errors="*{fecha}" >
+				</small>
+				</p>
 				<p> Motivo: <input type="text" th:field="*{motivo}" />
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('motivo')}"
 					th:errors="*{motivo}" >

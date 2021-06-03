@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,6 +29,7 @@ public abstract class Permiso {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha")
+	@NotNull(message="Fecha incorrecta!")
 	protected LocalDate fecha;
 	
 	@ManyToOne

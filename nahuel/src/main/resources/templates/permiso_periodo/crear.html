@@ -46,7 +46,11 @@
 				</p>
 				
 				
-				<p> Fecha: <input type="date" th:field="*{fecha}" /></p>
+				<p> Fecha: <input type="date" th:field="*{fecha}" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('fecha')}"
+					th:errors="*{fecha}" >
+				</small>
+				</p>
 				
 				
 				<p> Cantidad de dias: <input type="number" th:field="*{cantDias}" />
