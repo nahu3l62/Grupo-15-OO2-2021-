@@ -14,7 +14,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
+//comentario
 @Entity
 @Table(name = "usuario")
 
