@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>UNLa</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/modern-business.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/index">UNLa</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+
+					<li class ="nav-item dropdown">
+						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+							data-toggle="dropdown" href="#" id="navbarDropdownBlog" sec:authorize="anonymous or hasAuthority('Auditor')">Permiso</a>
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" sec:authorize="anonymous" th:href="@{/permiso_diario/seleccionarDni}">Crear Permiso Diario</a>
+							<a class="dropdown-item" sec:authorize="anonymous" th:href="@{/permiso_periodo/seleccionarDni}">Crear Permiso Periodo</a>
+							<a class="dropdown-item" href="/permiso/seleccionarDni">Traer Permiso Por Persona</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/rodado/seleccionarDominio}">Traer Permiso Por Rodado</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activo/}">Permisos periodos Activos</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activoDiario/}">Permisos diario Activos</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activoFechaLugarDiario/}">Traer por lugar diario</a>
+							<a class="dropdown-item" sec:authorize="hasAuthority('Auditor')"
+								th:href="@{/permiso/activoFechaLugarPeriodo/}">Traer por lugar periodo</a>
+
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="anonymous" th:href="@{/persona/}">Crear Persona</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="anonymous" th:href="@{/rodado/}">Crear rodado</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="hasAnyAuthority('Auditor', 'Administrador')"
+							th:href="@{/usuarios/lista/}">Usuarios</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="hasAnyAuthority('Auditor', 'Administrador')"
+							th:href="@{/perfiles/lista/}">Perfiles</a>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+							data-toggle="dropdown" href="#" id="navbarDropdownBlog">Mi Usuario</a>
+						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
+							<form sec:authorize="anonymous" th:action="@{/login}" method="post">
+								<input class="dropdown-item" style="cursor:pointer" type="submit"
+									value="Iniciar sesión" />
+							</form>
+
+							<form sec:authorize="authenticated" th:action="@{/logout}" method="post">
+								<input class="dropdown-item" style="cursor:pointer" type="submit"
+									value="Cerrar sesión" />
+							</form>
+
+						</div>
+					</li>
+			</div>
+			</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+
+	<header>
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<!-- Slide One - Set the background image for this slide in the line below -->
+				<div class="carousel-item active"
+					style="background-image: url('https://live.staticflickr.com/3042/2941600932_3f610f028f_k.jpg')">
+					<div class="carousel-caption d-none d-md-block">
+					</div>
+				</div>
+				<!-- Slide Two - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('https://live.staticflickr.com/1795/43953684702_c101271e6c_k.jpg')">
+					<div class="carousel-caption d-none d-md-block">
+					</div>
+				</div>
+				<!-- Slide Three - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('https://live.staticflickr.com/2834/13612030434_4a3c523652_k.jpg')">
+					<div class="carousel-caption d-none d-md-block">
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</header>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<h1 class="my-4">ORIENTACIÓN A OBJETOS 2</h1>
+
+		<!-- Marketing Icons Section -->
+		<div class="row">
+			<div class="col-lg-3 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Lautaro Sueldo</h4>
+					<div class="card-body">
+						<p class="card-text">43095145</p>
+					</div>
+					<div class="card-footer">
+						<a href="https://github.com/Lautaro2700" class="btn btn-primary">Git</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Martín Ottaviano</h4>
+					<div class="card-body">
+						<p class="card-text">38938381</p>
+					</div>
+					<div class="card-footer">
+						<a href="https://github.com/mmottaviano" class="btn btn-primary">Git</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Nahuel Ruiz</h4>
+					<div class="card-body">
+						<p class="card-text">39269851</p>
+					</div>
+					<div class="card-footer">
+						<a href="https://github.com/nahu3l62" class="btn btn-primary">Git</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Roger Ricciardulli</h4>
+					<div class="card-body">
+						<p class="card-text">42043541</p>
+					</div>
+					<div class="card-footer">
+						<a href="https://github.com/RogerRicciardulli" class="btn btn-primary">Git</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; UNLa 2021</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
