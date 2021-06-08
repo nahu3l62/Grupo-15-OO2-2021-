@@ -72,6 +72,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/usuarios/lista/**").hasAnyAuthority("Auditor", "Administrador")//pdf
 		.antMatchers("/usuarios/lista/edit/**").hasAuthority("Administrador")
 		.antMatchers("/usuarios/lista/delete/**").hasAuthority("Administrador")
+		
+		.antMatchers("/genrateAndDownloadQRCode/{codeText}/{width}/{height}/**").hasAuthority("Auditor")//traer permiso por persona(diario)
+		
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().permitAll()

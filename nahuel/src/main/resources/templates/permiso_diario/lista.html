@@ -44,21 +44,29 @@
 					<th scope="col">Fecha</th>
 					<th scope="col">Motivo</th>
 					<th scope="col">Desde hasta</th>
+					<th scope="col">Generar Codigo</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="li:${lista}">
-					<th scope="row" th:text="${li.persona}"></th>
-					<th scope="row" th:text="${li.fecha}"></th>
-					<th scope="row" th:text="${li.motivo}"></th>
-					<th scope="row" th:text="${li.desdeHasta}"></th>
+					<th scope="row" th:text="${li.persona}"> </th>
+					<th scope="row" th:text="${li.fecha}"> </th>
+					<th scope="row" th:text="${li.motivo}"> </th>
+					<th scope="row" th:text="${li.desdeHasta}"> </th>
+					<td>
+						<a class="btn btn-success btn-sm" href="/genrateAndDownloadQRCode/'${li.motivo}'/{350}/{350}" th:text="Generar"
+							title="QR">
+						</a>
+					</td>
+					
 					
 				</tr>
 
 			</tbody>
 		</table>
 	</div>
-
+	
+	
 
 	<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
 		<div class="container">
