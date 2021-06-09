@@ -44,8 +44,18 @@
 		var fecha = getParameter('fecha');
 		var lugar = getParameter('lugar');
 	</script>
-		
-	<table class="table">
+	
+	</script>
+	
+	<script>
+        hola = false;
+		if(permiso == "1")  
+			hola=true;
+	</script>	
+
+
+    
+	<table class="table" th:if="${hola == 'true'}">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
@@ -98,7 +108,10 @@
 
 		</tbody>
 	</table>
-
+	
+	
+		
+	
 	<br>
 		<br>
 		<br>
