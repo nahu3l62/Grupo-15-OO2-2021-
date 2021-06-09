@@ -37,8 +37,10 @@
 		}
 		
 		var permiso = getParameter('permiso');
-		
-		if(permiso==1){
+
+        	var numero = new Number(getParameter('permiso'));
+        
+		if(numero==1){
            	document.getElementById("tabla");
 		$('#tabla').show();
 		e
