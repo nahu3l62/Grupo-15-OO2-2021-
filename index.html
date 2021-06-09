@@ -48,14 +48,15 @@
 	</script>
 	
 	<script>
-        hola = false;
-		if(permiso == "1")  
-			hola=true;
-	</script>	
+        var a = new Number('permiso');
+        var x = new Boolean(false);
+		if(a == "1")  
+			x=true;
+	</script>		
 
 
     
-	<table class="table" th:if="${hola == 'true'}">
+	<table class="table" th:if="${x == 'true'}">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
@@ -109,7 +110,7 @@
 		</tbody>
 	</table>
 	
-	<table class="table" th:if="${hola == 'false'}">
+	<table class="table" th:if="${x == 'false'}">
 		<h1>HOLA</h1>
 	</table>
 	
