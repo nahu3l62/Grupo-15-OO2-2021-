@@ -48,8 +48,8 @@
 	
 
 	
-    
-	<table class="table" th:if="${param.permiso == '1'}">
+    	<div th:if="${param.permiso == '1'}">
+	<table class="table">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
@@ -102,10 +102,13 @@
 
 		</tbody>
 	</table>
+	</div>
 	
-	<table class="table" th:if="${param.permiso == '2'}">
+	<div th:if="${param.permiso == '2'}">
+	<table class="table">
 		<h1>HOLA</h1>
 	</table>
+	</div>
 	
 		<br>
 		<br>
