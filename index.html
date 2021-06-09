@@ -30,37 +30,6 @@
 	<header>
 		
 	</header>
-	<script>
-		document.write(1);
-		function getParameter(parameterName) {
-			let parameters = new URLSearchParams(window.location.search);
-			return parameters.get(parameterName);
-		}
-		
-		var permiso = getParameter('permiso');
-		document.write(permiso);
-		document.write(permiso==1);
-	
-		if(permiso==1){
-		document.getElementById("tabla").hidden = true;	
-		document.write(2);	
-		}
-		
-
-		if(permiso==2){
-		document.getElementById("prueba").hidden = true;	
-		document.write(3);	
-		}
-	
-		var nombre = getParameter('nombre');
-		var apellido = getParameter('apellido');
-		var dni = getParameter('dni');
-		var motivo = getParameter('motivo');
-		var fecha = getParameter('fecha');
-		var lugar = getParameter('lugar');
-		document.write(4);
-	</script>
-	
 	
     	<div id="tabla" class="container">
 	<table class="table">
@@ -120,9 +89,40 @@
 	
 	<div class="container">
 	<table class="table">
-		<h1 id="prueba">XXX</h1>
+		<h1 id="prueba">EEEE</h1>
 	</table>
 	</div>
+	
+	<script>
+		document.write(1);
+		function getParameter(parameterName) {
+			let parameters = new URLSearchParams(window.location.search);
+			return parameters.get(parameterName);
+		}
+		
+		var permiso = getParameter('permiso');
+		document.write(permiso);
+		document.write(permiso==1);
+	
+		if(permiso==1){
+		document.getElementById("tabla").hidden = true;	
+		document.write(2);	
+		}
+		
+
+		if(permiso==2){
+		document.getElementById("prueba").hidden = true;	
+		document.write(3);	
+		}
+	
+		var nombre = getParameter('nombre');
+		var apellido = getParameter('apellido');
+		var dni = getParameter('dni');
+		var motivo = getParameter('motivo');
+		var fecha = getParameter('fecha');
+		var lugar = getParameter('lugar');
+		document.write(4);
+	</script>
 	
 		<br>
 		<br>
