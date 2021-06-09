@@ -38,20 +38,19 @@
 		
 		var permiso = getParameter('permiso');
 
-        	var numero = new Number(getParameter('permiso'));
+        	var numero = parseInt("permiso");
         
 		if(numero==1){
-       		document.getElementById("tabla");
-		$('#tabla').show();
-		e;
-       		document.getElementById("tabla").innerHTML = "hijo de puta";
+       		document.getElementById("tabla").element.style.display = 'none';
+		//$('#tabla').show();
+       		//document.getElementById("tabla").innerHTML = "hijo de puta";
         	//("$tabla").hiden();
         	//demo.classList.add('hidden')
 		}
 		
 
 		if(permiso==2){
-		document.getElementById("prueba").style.display = "none";
+		document.getElementById("prueba").element.style.display = 'none';
 		//("$prueba").hiden();
 		}
 	
@@ -64,7 +63,7 @@
 	</script>
 	
 	
-    	<div id="tabla" class="container">
+    	<div id="tabla" style="display:block" class="container">
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
@@ -120,9 +119,9 @@
 	</table>
 	</div>
 	
-	<div id="prueba" class="container">
+	<div id="prueba" style="display:block" class="container">
 	<table class="table">
-		<h1>CHAU</h1>
+		<h1>PUTO</h1>
 	</table>
 	</div>
 	
