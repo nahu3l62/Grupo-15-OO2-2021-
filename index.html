@@ -45,14 +45,6 @@
 		var lugar = getParameter('lugar');
 	</script>
 	
-	<div th:text="${param.nombre[0]}"></div>
-	
-	
-	
-	<div class="container" th:if="${#request.getParameter('permiso')=='1'}">
-		chau
-	</div>
-	
 	
     	<div class="container" th:if="${(param.permiso == '1')}">
 	<table class="table">
