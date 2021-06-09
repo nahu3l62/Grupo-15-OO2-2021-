@@ -52,11 +52,19 @@
         var x = new Boolean(false);
 		if(a == 1)  
 			x=true;
-	</script>		
+	</script>
+	
+	 <script th:inline="javascript">
 
+        /*<![CDATA[*/
+          
+           var hola = x;
+  
+         /*]]>*/
+ 	 </script> 
 
     
-	<table class="table" th:if="${x} == true">
+	<table class="table" th:if="${javascript} == true">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
