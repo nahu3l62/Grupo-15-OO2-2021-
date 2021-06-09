@@ -46,7 +46,7 @@
 	</script>
 	
 	
-	<div th:text="${param.permiso}">HOLA</div>
+	<p th:text="${#request.getParameter('permiso')}">Text</p>
 	
     	<div class="container" th:if="${(param.permiso == '1')}">
 	<table class="table">
