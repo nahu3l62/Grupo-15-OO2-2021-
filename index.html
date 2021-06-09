@@ -37,6 +37,15 @@
 		}
 		
 		var permiso = getParameter('permiso');
+		
+		if(permiso==1){
+            document.getElementById("tabla");
+            //document.getElementById("demo").innerHTML = "Good day";
+            ("$tabla").hiden();
+            //demo.classList.add('hidden')
+        }
+		
+		
 		var nombre = getParameter('nombre');
 		var apellido = getParameter('apellido');
 		var dni = getParameter('dni');
@@ -46,8 +55,10 @@
 	</script>
 	
 	
+	
+	
     	<div class="container" th:if="${(param.permiso == '1')}">
-	<table class="table">
+	<table id="tabla" class="table">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
