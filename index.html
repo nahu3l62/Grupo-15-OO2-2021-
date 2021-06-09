@@ -28,8 +28,24 @@
 	</nav>
 
 	<header>
-		
+
 	</header>
+	
+	<script>
+		function getParameter(parameterName) {
+			let parameters = new URLSearchParams(window.location.search);
+			return parameters.get(parameterName);
+		}
+		
+		var permiso = getParameter('permiso');
+		var nombre = getParameter('nombre');
+		var apellido = getParameter('apellido');
+		var dni = getParameter('dni');
+		var motivo = getParameter('motivo');
+		var fecha = getParameter('fecha');
+		var lugar = getParameter('lugar');
+		
+	</script>
 	
     	<div id="tabla" class="container">
 	<table class="table">
@@ -95,12 +111,7 @@
 	
 	<script>
 		document.write(1);
-		function getParameter(parameterName) {
-			let parameters = new URLSearchParams(window.location.search);
-			return parameters.get(parameterName);
-		}
 		
-		var permiso = getParameter('permiso');
 		document.write(permiso);
 		document.write(permiso==1);
 	
@@ -115,12 +126,6 @@
 		document.write(3);	
 		}
 	
-		var nombre = getParameter('nombre');
-		var apellido = getParameter('apellido');
-		var dni = getParameter('dni');
-		var motivo = getParameter('motivo');
-		var fecha = getParameter('fecha');
-		var lugar = getParameter('lugar');
 		document.write(4);
 	</script>
 	
