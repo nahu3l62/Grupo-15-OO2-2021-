@@ -45,14 +45,6 @@
 		var lugar = getParameter('lugar');
 	</script>
 	
-	
-	<div id="errors" th:if="${(param.permiso != null) and (param.permiso[0] == 'true')}">
-   	 Input is incorrect
-	</div>
-	
-	<a href="${param.nombre[0]}">Googleee</a>
-	
-	
     	<div class="container" th:if="${(param.permiso == '1')}">
 	<table class="table">
 		<thead class="thead-dark">
