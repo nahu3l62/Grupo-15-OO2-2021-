@@ -39,6 +39,9 @@
 		var nombre = getParameter('nombre');
 		var apellido = getParameter('apellido');
 		var dni = getParameter('dni');
+		var motivo = getParameter('motivo');
+		var fecha = getParameter('fecha');
+		var fecha = getParameter('lugar');
 
 
 	</script>
@@ -52,6 +55,9 @@
 				<th scope="col">Nombre</th>
 				<th scope="col">Apellido</th>
 				<th scope="col">DNI</th>
+				<th scope="col">Motivo</th>
+				<th scope="col">Fecha</th>
+				<th scope="col">Lugar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -71,6 +77,24 @@
 				<th scope="row">
 					<script type="text/javascript">
 						document.write(dni)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(motivo)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(fecha)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(lugar)
 					</script>
 				</th>
 
