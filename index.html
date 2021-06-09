@@ -31,24 +31,25 @@
 		
 	</header>
 	<script>
-		document.write(5 + 7);
+		document.write(1);
 		function getParameter(parameterName) {
 			let parameters = new URLSearchParams(window.location.search);
 			return parameters.get(parameterName);
 		}
 		
-		//var permiso = getParameter('permiso');
-		var permiso = 1 ; 
+		var permiso = getParameter('permiso');
+		document.write(permiso);
+		document.write(permiso==1);
 	
 		if(permiso==1){
 		document.getElementById("tabla").hidden = true;	
-		document.write(5 + 5);	
+		document.write(2);	
 		}
 		
 
 		if(permiso==2){
 		document.getElementById("prueba").hidden = true;	
-		document.write(5 + 9);	
+		document.write(3);	
 		}
 	
 		var nombre = getParameter('nombre');
@@ -57,7 +58,7 @@
 		var motivo = getParameter('motivo');
 		var fecha = getParameter('fecha');
 		var lugar = getParameter('lugar');
-		document.write(5 + 3);
+		document.write(4);
 	</script>
 	
 	
@@ -119,7 +120,7 @@
 	
 	<div class="container">
 	<table class="table">
-		<h1 id="prueba">TINCHAAA</h1>
+		<h1 id="prueba">XXX</h1>
 	</table>
 	</div>
 	
