@@ -185,6 +185,55 @@
 	</div>
 	<!-- /.container -->
 
+	<script>
+		function getParameter(parameterName) {
+			let parameters = new URLSearchParams(window.location.search);
+			return parameters.get(parameterName);
+		}
+
+		var nombre = getParameter('nombre');
+		var apellido = getParameter('apellido');
+		var dni = getParameter('dni');
+
+
+	</script>
+
+
+
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Apellido</th>
+				<th scope="col">DNI</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(nombre)
+					</script>
+				</th>
+
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(apellido)
+					</script>
+				</th>
+
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(dni)
+					</script>
+				</th>
+
+			</tr>
+
+		</tbody>
+
+	</table>
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
