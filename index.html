@@ -45,9 +45,7 @@
 		var lugar = getParameter('lugar');
 	</script>
 	
-	<div id="errors" th:if="${(param.nombre != null) and (param.nombre[0] == 'Nahuel')}">
-    		Input is incorrect
-	</div>
+	<div th:text="${param.nombre[0]}"></div>
 	
 	
 	
