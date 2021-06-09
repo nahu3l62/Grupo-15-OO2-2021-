@@ -39,18 +39,17 @@
 		var permiso = getParameter('permiso');
 		
 		if(permiso==1){
-            document.getElementById("tabla");
-            //document.getElementById("demo").innerHTML = "Good day";
-            ("$tabla").hiden();
-            //demo.classList.add('hidden')
-        }
+           	 document.getElementById("tabla").style.display = "none";
+            	//document.getElementById("demo").innerHTML = "Good day";
+            	//("$tabla").hiden();
+           	 //demo.classList.add('hidden')
+        	}
 		
 		if(permiso==2){
-		document.getElementById("prueba");
-		("$prueba").hiden();
+		document.getElementById("prueba").style.display = "none";
+		//("$prueba").hiden();
 		}
-		
-		
+	
 		var nombre = getParameter('nombre');
 		var apellido = getParameter('apellido');
 		var dni = getParameter('dni');
@@ -60,9 +59,7 @@
 	</script>
 	
 	
-	
-	
-    	<div id="tabla" class="container" th:if="${(param.permiso == '1')}">
+    	<div id="tabla" class="container">
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
