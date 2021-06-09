@@ -36,7 +36,6 @@
 			let parameters = new URLSearchParams(window.location.search);
 			return parameters.get(parameterName);
 		}
-		
 		var permiso = getParameter('permiso');
 		var nombre = getParameter('nombre');
 		var apellido = getParameter('apellido');
@@ -44,6 +43,9 @@
 		var motivo = getParameter('motivo');
 		var fecha = getParameter('fecha');
 		var lugar = getParameter('lugar');
+		var fecha2 = getParameter('fecha2');
+		var rodado = getParameter('rodado');
+		var dias = getParameter('dias');
 		
 	</script>
 	
@@ -105,7 +107,7 @@
 	
 	<div class="container">
 	<table class="table">
-		<h1 id="prueba">QQQQQQQ</h1>
+		<h1 id="prueba">TTTTT</h1>
 	</table>
 	</div>
 	
@@ -115,13 +117,13 @@
 		document.write(permiso);
 		document.write(permiso==1);
 	
-		if(permiso==1){
+		if(permiso==2){
 		document.getElementById("tabla").hidden = true;	
 		document.write(2);	
 		}
 		
 
-		if(permiso==2){
+		if(permiso==1){
 		document.getElementById("prueba").hidden = true;	
 		document.write(3);	
 		}
@@ -129,6 +131,11 @@
 		document.write(4);
 	</script>
 	
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<br>
 		<br>
 		<br>
