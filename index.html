@@ -46,11 +46,12 @@
 		var fecha2 = getParameter('fecha2');
 		var rodado = getParameter('rodado');
 		var dias = getParameter('dias');
+		var vacaciones = getParameter('vacaciones');
 		
 	</script>
 	
  
-	<table id="tabla" class="table">
+	<table id="diario" class="table">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
@@ -104,30 +105,95 @@
 		</tbody>
 	</table>
 	
+	//hola
 	
-	<table id="prueba" class="table">
-		<h1>EEEE</h1>
+	<table id="periodo" class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Apellido</th>
+				<th scope="col">DNI</th>
+				<th scope="col">Fecha inicial</th>
+				<th scope="col">Fecha final</th>
+				<th scope="col">Rodado</th>
+				<th scope="col">Cantidad de dias</th>
+				<th scope="col">Vacaciones</th>
+				<th scope="col">Lugar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(nombre)
+					</script>
+				</th>
+
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(apellido)
+					</script>
+				</th>
+
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(dni)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(fecha)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(fecha2)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(rodado)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(dias)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(vacaciones)
+					</script>
+				</th>
+				
+				<th scope="row">
+					<script type="text/javascript">
+						document.write(lugar)
+					</script>
+				</th>
+
+			</tr>
+
+		</tbody>
 	</table>
+	
+	
+	
 
 	
 	<script>
-		document.write(1);
-		
-		document.write(permiso);
-		document.write(permiso==1);
-	
 		if(permiso==2){
-		document.getElementById("tabla").hidden = true;	
-		document.write(2);	
+		document.getElementById("diario").hidden = true;		
 		}
 		
-
 		if(permiso==1){
-		document.getElementById("prueba").hidden = true;	
-		document.write(3);	
+		document.getElementById("periodo").hidden = true;	
 		}
-	
-		document.write(4);
 	</script>
 	
 		<br>
