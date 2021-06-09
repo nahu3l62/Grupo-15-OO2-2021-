@@ -45,6 +45,11 @@
             //demo.classList.add('hidden')
         }
 		
+		if(permiso==2){
+		document.getElementById("prueba");
+		("$prueba").hiden();
+		}
+		
 		
 		var nombre = getParameter('nombre');
 		var apellido = getParameter('apellido');
@@ -113,7 +118,7 @@
 	</table>
 	</div>
 	
-	<div class="container" th:if="${(param.permiso == '2')}">
+	<div id="prueba" class="container">
 	<table class="table">
 		<h1>HOLA</h1>
 	</table>
