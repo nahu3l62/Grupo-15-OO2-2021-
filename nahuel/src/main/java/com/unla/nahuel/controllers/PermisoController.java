@@ -1,11 +1,14 @@
 package com.unla.nahuel.controllers;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.zxing.WriterException;
+import com.unla.nahuel.QRCodeGenerator;
 import com.unla.nahuel.entities.Lugar;
 import com.unla.nahuel.entities.Permiso;
 import com.unla.nahuel.entities.PermisoDiario;
@@ -161,6 +166,20 @@ public class PermisoController {
 		model.addAttribute("lista", listadoDePermisosPeriodosFiltradosPorFecha);
 		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
 	} 
+	
+	
+	@GetMapping("lista/permisoDiario/qr/{id}")
+	public String generarQr(@PathVariable("id") long id, Model model) throws Exception {
+		PermisoDiario permiso = permisoDiarioService.buscar(id);
+		String pagina = "https://nahu3l62.github.io/Grupo-15-OO2-2021-/";
+		String hola = pagina+permiso.getMotivo()+permiso.getDesdeHasta()+permiso.getPersona();
+		System.out.println(hola);
+		final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+		model.addAttribute("titulo", "Codigo QR Creado correctamente.");
+		QRCodeGenerator.generateQRCodeImage(hola, 350, 350, QR_CODE_IMAGE_PATH);
+		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(pagina, 350, 350));
+		return "permiso_diario/qr";
+	}
 	
 
 
