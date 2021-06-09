@@ -46,7 +46,9 @@
 	</script>
 	
 	
-	<p th:text="${#request.getParameter('permiso')}">Text</p>
+	<div id="errors" th:if="${(param.permiso != null) and (param.permiso[0] == '1')}">
+   	 Input is incorrect
+	</div>
 	
     	<div class="container" th:if="${(param.permiso == '1')}">
 	<table class="table">
