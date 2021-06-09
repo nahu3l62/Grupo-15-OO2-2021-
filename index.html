@@ -39,7 +39,9 @@
 		var permiso = getParameter('permiso');
 		
 		if(permiso==1){
-           	 document.getElementById("tabla").style.display = "none";
+           	document.getElementById("tabla");
+		$('#tabla').show();
+		e
             	//document.getElementById("demo").innerHTML = "Good day";
             	//("$tabla").hiden();
            	 //demo.classList.add('hidden')
@@ -59,7 +61,7 @@
 	</script>
 	
 	
-    	<div id="tabla" style="display:block;" class="container">
+    	<div id="tabla" class="container">
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
