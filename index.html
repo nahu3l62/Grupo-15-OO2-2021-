@@ -56,7 +56,7 @@
 
 
     
-	<table class="table" th:if="${x == 'true'}">
+	<table class="table" th:if="${x} == true">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Nombre</th>
@@ -110,7 +110,7 @@
 		</tbody>
 	</table>
 	
-	<table class="table" th:if="${x == 'false'}">
+	<table class="table" th:if="${x} == false">
 		<h1>HOLA</h1>
 	</table>
 	
