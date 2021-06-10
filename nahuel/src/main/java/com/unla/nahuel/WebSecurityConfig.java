@@ -32,6 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/index","/","/css/**","/images/**","/js/**","/vendor/**").permitAll()
+		.antMatchers("/permiso/lista/permisoDiario/qr/**").anonymous()
+		.antMatchers("/permiso/lista/permisoPeriodo/qr/**").anonymous()
 		.antMatchers("/permiso/**").access("anonymous or hasAuthority('Auditor')")//traer permiso por persona
 		.antMatchers("/permiso/seleccionarDni").access("anonymous or hasAuthority('Auditor')")//traer permiso por persona
 		.antMatchers("/permiso/lugar").hasAuthority("Auditor")//traer permiso por lugar
@@ -72,6 +74,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/usuarios/lista/**").hasAnyAuthority("Auditor", "Administrador")//pdf
 		.antMatchers("/usuarios/lista/edit/**").hasAuthority("Administrador")
 		.antMatchers("/usuarios/lista/delete/**").hasAuthority("Administrador")
+		
+				
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().permitAll()

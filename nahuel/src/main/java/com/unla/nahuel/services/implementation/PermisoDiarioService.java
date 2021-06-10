@@ -29,8 +29,7 @@ public class PermisoDiarioService implements IPermisoDiarioService {
 
 	@Override
 	public PermisoDiario buscar(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return permisoDiarioRepository.findById(id).orElse(null);
 	}
 
 	@Override

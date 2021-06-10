@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.unla.nahuel.entities.Perfiles;
 import com.unla.nahuel.helpers.ViewRouteHelper;
 import com.unla.nahuel.services.IPerfilesService;
@@ -36,7 +38,7 @@ public class PerfilController {
 	}
 	
 	@PostMapping("/")
-	public String guardar(@Valid @ModelAttribute Perfiles perfil,BindingResult result,Model model) {
+	public String guardar(@Valid @ModelAttribute Perfiles perfil,BindingResult result,Model model,RedirectAttributes attribute) {
 		if(perfilesService.findByRol(perfil.getRol())!=null) {
 			FieldError error = new FieldError("perfil", "rol", "Ya existe un perfil con ese rol");
 			result.addError(error);
@@ -50,6 +52,7 @@ public class PerfilController {
 		perfil.setDeshabilitado(true);
 		perfilesService.save(perfil);
 		System.out.println("Perfil guardado con exito!");
+		attribute.addFlashAttribute("success","Perfil agregado con exito");
 		return ViewRouteHelper.PERFIL_REDIRECT;	
 	}
 	
@@ -78,11 +81,12 @@ public class PerfilController {
 	}
 	
 	@GetMapping("lista/delete/{id}")
-	public String eliminar(@PathVariable("id") long id) {
+	public String eliminar(@PathVariable("id") long id,RedirectAttributes attribute) {
 		Perfiles p = perfilesService.buscar(id);
 		p.setDeshabilitado(false);
 		perfilesService.save(p);
 		System.out.println("Perfil eliminado con exito");
+		attribute.addFlashAttribute("warning","Perfil eliminado con exito");
 		return ViewRouteHelper.PERFIL_REDIRECT_LISTA;
 	}
 

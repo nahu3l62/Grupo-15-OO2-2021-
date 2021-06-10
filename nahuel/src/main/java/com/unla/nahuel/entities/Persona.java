@@ -19,11 +19,11 @@ public class Persona {
 	private long idPersona;
 
 	@Column(name = "nombre")
-	@NotEmpty
+	@NotEmpty(message="El nombre no debe estar vacio")
 	private String nombre;
 
 	@Column(name = "apellido")
-	@NotEmpty
+	@NotEmpty(message="El apellido no debe estar vacio")
 	private String apellido;
 
 	@Column(name = "dni")

@@ -32,6 +32,10 @@
 			</ul>
 			</div>
 		</nav>
+		<div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
+			<label th:text="${warning}"></label>
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
 	</header>
 
 	<div class="container">
@@ -76,8 +80,8 @@
 			</tbody>
 		</table>
 
-		<a class="nav-link float-right" sec:authorize="hasAuthority('Auditor')" th:href="@{/perfiles/lista/(format=pdf)}" title="Exportar a PDF"
-			target="_blank">
+		<a class="nav-link float-right" sec:authorize="hasAuthority('Auditor')"
+			th:href="@{/perfiles/lista/(format=pdf)}" title="Exportar a PDF" target="_blank">
 
 			<img class="img-responsive center-box" th:src="@{/images/pdf.png}" height="auto">
 		</a>
