@@ -44,7 +44,7 @@
 					<th scope="col">Fecha</th>
 					<th scope="col">Motivo</th>
 					<th scope="col">Desde hasta</th>
-					<th scope="col">Generar Qr</th>
+					<th scope="col" sec:authorize="anonymous">Generar Qr</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,7 +54,7 @@
 					<th scope="row" th:text="${li.motivo}"> </th>
 					<th scope="row" th:text="${li.desdeHasta}"> </th>
 					<td>
-						<a class="btn btn-success btn-sm" th:href="@{/permiso/lista/permisoDiario/qr/}+${li.idPermiso}" th:text="Generar" title="QR"></a>
+						<a class="btn btn-success btn-sm" sec:authorize="anonymous" th:href="@{/permiso/lista/permisoDiario/qr/}+${li.idPermiso}" th:text="Generar" title="QR"></a>
 					</td>
 				</tr>
 
