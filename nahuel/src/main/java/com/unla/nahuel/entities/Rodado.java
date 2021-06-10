@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "rodado", uniqueConstraints = { @UniqueConstraint(columnNames = { "dominio" }) })
@@ -18,11 +20,13 @@ public class Rodado {
 	private long idRodado;
 
 	@Column(name = "dominio")
-	@NotEmpty
+	@NotEmpty(message="El dominio no debe estar vacio")
+	@Pattern(regexp="^[A-Z]{3}[0-9]{3}|[A-Z]{2}[0-9]{3}[A-Z]{2}", message="Dominio invalido. El formato tiene que ser del tipo 'AAA111' o 'AA111AA' ")
+	
 	private String dominio;
 
 	@Column(name = "vehiculo")
-	@NotEmpty
+	@NotEmpty(message="El vehiculo no debe estar vacio")
 	private String vehiculo;
 
 	public Rodado() {
