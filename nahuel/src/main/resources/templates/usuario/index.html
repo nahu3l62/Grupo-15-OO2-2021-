@@ -27,7 +27,7 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/perfiles/lista">Lista Perfiles</a>
 						</li>
-						
+
 						<li class="nav-item">
 							<a class="nav-link" href="/logout">Cerrar sesion</a>
 						</li>
@@ -37,6 +37,10 @@
 				</ul>
 				</div>
 			</nav>
+			<div class="alert alert-success alert-dismissable" th:if="${success != null}">
+				<label th:text="${success}"></label>
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
 		</header>
 	</header>
 
