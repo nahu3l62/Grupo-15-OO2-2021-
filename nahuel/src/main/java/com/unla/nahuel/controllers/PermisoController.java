@@ -46,27 +46,27 @@ public class PermisoController {
 	@Autowired
 	@Qualifier("personaService")
 	private IPersonaService personaService;
-	
+
 	@Autowired
 	@Qualifier("permisoDiarioService")
 	private IPermisoDiarioService permisoDiarioService;
-	
+
 	@Autowired
 	@Qualifier("lugarService")
 	private ILugarService lugarService;
-	
+
 	@GetMapping("/seleccionarDni")
 	public String seleccionarDni(Model model) {
 		return ViewRouteHelper.PERMISO_SELECCIONAR_DNI;
 	}
 
 	@GetMapping("/")
-	public String listarClientes(@RequestParam long dni, Model model,RedirectAttributes attribute) {
+	public String listarClientes(@RequestParam long dni, Model model, RedirectAttributes attribute) {
 		List<Persona> personas = new ArrayList<Persona>();
 		model.addAttribute("titulo", "Persona");
 		Persona persona = personaService.findByDni(dni);
-		if(persona==null) {
-			attribute.addFlashAttribute("success","Este dni no se encuentra en la base de datos");
+		if (persona == null) {
+			attribute.addFlashAttribute("success", "Este dni no se encuentra en la base de datos");
 			return ViewRouteHelper.PERMISO_DNI_REDIRECT;
 		}
 		personas.add(persona);
@@ -88,40 +88,42 @@ public class PermisoController {
 		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchPersonaEagerly(id);
 		List<PermisoPeriodo> listadoDePermisosPeriodo = permisoService.filtrarPorPermisoPeriodo(listadoDePermisos);
 		model.addAttribute("titulo", "Permisos por periodo");
-		model.addAttribute("lista",listadoDePermisosPeriodo);
+		model.addAttribute("lista", listadoDePermisosPeriodo);
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
 	}
-	
+
 	@GetMapping("/activo")
 	public String activoPeriodo(Model model) {
 		model.addAttribute("titulo", "Permisos periodos activos");
 		return ViewRouteHelper.PERMISO_ACTIVO;
 	}
-	
+
 	@RequestMapping("/fecha")
-	public String activoPeriodoXFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha2, Model model){ 
-	    List<PermisoPeriodo> listado = permisoPeriodoService.getAll();
+	public String activoPeriodoXFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1,
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha2, Model model) {
+		List<PermisoPeriodo> listado = permisoPeriodoService.getAll();
 		List<PermisoPeriodo> permisos = permisoService.filtrarPorFechaPermisoPeriodo(listado, fecha1, fecha2);
 		model.addAttribute("titulo", "Permisos periodo activos");
 		model.addAttribute("lista", permisos);
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
-	} 
+	}
 
 	@GetMapping("/activoDiario")
 	public String activoDiario(Model model) {
 		model.addAttribute("titulo", "Permisos diarios activos");
 		return ViewRouteHelper.PERMISO_DIARIO;
 	}
-	
+
 	@RequestMapping("/fechaDiario")
-	public String activoDiarioXFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, Model model){ 
-	    List<PermisoDiario> listado = permisoDiarioService.getAll();
+	public String activoDiarioXFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1,
+			Model model) {
+		List<PermisoDiario> listado = permisoDiarioService.getAll();
 		List<PermisoDiario> permisos = permisoService.filtrarPorFechaPermisoDiario(listado, fecha1);
 		model.addAttribute("titulo", "Permisos diarios activos");
 		model.addAttribute("lista", permisos);
 		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
-	} 
-	
+	}
+
 	@GetMapping("/lugar")
 	public String traerLugar(Model model) {
 		List<Lugar> lugares = lugarService.getAll();
@@ -129,45 +131,52 @@ public class PermisoController {
 		model.addAttribute("lugares", lugares);
 		return ViewRouteHelper.PERMISO_TRAER;
 	}
-	
+
 	@GetMapping("/activoFechaLugarPeriodo")
 	public String periodoXFechaYLugar(Model model) {
 		List<Lugar> lugares = lugarService.getAll();
-		model.addAttribute("titulo", "Traer permisos periodos entre fecha y fecha que lleguen o salgan desde un lugar determinado");
+		model.addAttribute("titulo",
+				"Traer permisos periodos entre fecha y fecha que lleguen o salgan desde un lugar determinado");
 		model.addAttribute("lugares", lugares);
 		return ViewRouteHelper.PERMISO_ACTIVOXFECHAYLUGAR_PERIODO;
 	}
-	
+
 	@RequestMapping("/traerFechaLugarPeriodo")
-	public String activoPeriodoXFechaYLugar(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha2, @RequestParam long idLugar, Model model){ 
+	public String activoPeriodoXFechaYLugar(
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1,
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha2, @RequestParam long idLugar,
+			Model model) {
 		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchLugarEagerly(idLugar);
 		List<PermisoPeriodo> listadoDePermisosPeriodos = permisoService.filtrarPorPermisoPeriodo(listadoDePermisos);
-		List<PermisoPeriodo> listadoDePermisosPeriodosFiltradosPorFecha = permisoService.filtrarPorFechaPermisoPeriodo(listadoDePermisosPeriodos, fecha1, fecha2);
+		List<PermisoPeriodo> listadoDePermisosPeriodosFiltradosPorFecha = permisoService
+				.filtrarPorFechaPermisoPeriodo(listadoDePermisosPeriodos, fecha1, fecha2);
 		model.addAttribute("titulo", "Permisos periodo activos");
 		model.addAttribute("lista", listadoDePermisosPeriodosFiltradosPorFecha);
 		return ViewRouteHelper.PERMISO_PERIODO_LISTA;
-	} 
-	
-	
+	}
+
 	@GetMapping("/activoFechaLugarDiario")
 	public String diarioXFechaYLugar(Model model) {
 		List<Lugar> lugares = lugarService.getAll();
-		model.addAttribute("titulo", "Traer permisos diarios con fecha que lleguen o salgan desde un lugar determinado");
+		model.addAttribute("titulo",
+				"Traer permisos diarios con fecha que lleguen o salgan desde un lugar determinado");
 		model.addAttribute("lugares", lugares);
 		return ViewRouteHelper.PERMISO_ACTIVOXFECHAYLUGAR_DIARIO;
 	}
-	
+
 	@RequestMapping("/traerFechaLugarDiario")
-	public String activoDiarioXFechaYLugar(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1,@RequestParam long idLugar, Model model){ 
+	public String activoDiarioXFechaYLugar(
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha1, @RequestParam long idLugar,
+			Model model) {
 		List<Permiso> listadoDePermisos = permisoService.findByIdAndFetchLugarEagerly(idLugar);
 		List<PermisoDiario> listadoDePermisosDiarios = permisoService.filtrarPorPermisoDiario(listadoDePermisos);
-		List<PermisoDiario> listadoDePermisosPeriodosFiltradosPorFecha = permisoService.filtrarPorFechaPermisoDiario(listadoDePermisosDiarios, fecha1);
+		List<PermisoDiario> listadoDePermisosPeriodosFiltradosPorFecha = permisoService
+				.filtrarPorFechaPermisoDiario(listadoDePermisosDiarios, fecha1);
 		model.addAttribute("titulo", "Permisos diarios activos");
 		model.addAttribute("lista", listadoDePermisosPeriodosFiltradosPorFecha);
 		return ViewRouteHelper.PERMISO_DIARIO_LISTA;
-	} 
-	
-	
+	}
+
 	@GetMapping("lista/permisoDiario/qr/{id}")
 	public String generarQr(@PathVariable("id") long id, Model model) throws Exception {
 		PermisoDiario permiso = permisoDiarioService.buscar(id);
@@ -179,6 +188,7 @@ public class PermisoController {
 		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(datos, 350, 350));
 		return "permiso_diario/qr";
 	}
+
 	
 	@GetMapping("lista/permisoPeriodo/qr/{id}")
 	public String generarPeriodoQr(@PathVariable("id") long id, Model model) throws Exception {
@@ -192,5 +202,6 @@ public class PermisoController {
 		return "permiso_diario/qr";
 	}
 	
+
 
 }
