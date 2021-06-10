@@ -44,7 +44,7 @@
 					<th scope="col">Fecha</th>
 					<th scope="col">Motivo</th>
 					<th scope="col">Desde hasta</th>
-					<th scope="col">Generar Codigo</th>
+					<th scope="col">Generar Qr</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -56,8 +56,6 @@
 					<td>
 						<a class="btn btn-success btn-sm" th:href="@{/permiso/lista/permisoDiario/qr/}+${li.idPermiso}" th:text="Generar" title="QR"></a>
 					</td>
-					
-					
 				</tr>
 
 			</tbody>

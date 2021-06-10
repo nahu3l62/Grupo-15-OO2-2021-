@@ -171,16 +171,26 @@ public class PermisoController {
 	@GetMapping("lista/permisoDiario/qr/{id}")
 	public String generarQr(@PathVariable("id") long id, Model model) throws Exception {
 		PermisoDiario permiso = permisoDiarioService.buscar(id);
-		String pagina = "https://nahu3l62.github.io/Grupo-15-OO2-2021-/";
-		String hola = pagina+permiso.getMotivo()+permiso.getDesdeHasta()+permiso.getPersona();
-		System.out.println(hola);
-		final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+		String pagina = "https://nahu3l62.github.io/Grupo-15-OO2-2021-/?";
+		String datos = pagina+"permiso="+"1"+"&nombre="+permiso.getPersona().getNombre()+"&apellido="+permiso.getPersona().getApellido()+"&dni="+permiso.getPersona().getDni()+"&motivo="+permiso.getMotivo()+"&fecha="+permiso.getFecha()+"&lugar="+permiso.getDesdeHasta();
+		final String QR_CODE_IMAGE_PATH = "./src/main/resources/static/images/QRCode.png";
 		model.addAttribute("titulo", "Codigo QR Creado correctamente.");
-		QRCodeGenerator.generateQRCodeImage(hola, 350, 350, QR_CODE_IMAGE_PATH);
-		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(pagina, 350, 350));
+		QRCodeGenerator.generateQRCodeImage(datos, 350, 350, QR_CODE_IMAGE_PATH);
+		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(datos, 350, 350));
 		return "permiso_diario/qr";
 	}
 	
-
+	@GetMapping("lista/permisoPeriodo/qr/{id}")
+	public String generarPeriodoQr(@PathVariable("id") long id, Model model) throws Exception {
+		PermisoPeriodo permiso = permisoPeriodoService.buscar(id);
+		String pagina = "https://nahu3l62.github.io/Grupo-15-OO2-2021-/?";
+		String datos = pagina+"permiso="+"2"+"&nombre="+permiso.getPersona().getNombre()+"&apellido="+permiso.getPersona().getApellido()+"&dni="+permiso.getPersona().getDni()+"&fecha="+permiso.getFecha()+"&fecha2="+permiso.getFecha().plusDays(permiso.getCantDias())+"&rodado="+permiso.getRodado()+"&vacaciones="+permiso.isVacaciones()+"&lugar="+permiso.getDesdeHasta();
+		final String QR_CODE_IMAGE_PATH = "./src/main/resources/static/images/QRCode.png";
+		model.addAttribute("titulo", "Codigo QR creado correctamente.");
+		QRCodeGenerator.generateQRCodeImage(datos, 350, 350, QR_CODE_IMAGE_PATH);
+		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(datos, 350, 350));
+		return "permiso_diario/qr";
+	}
+	
 
 }

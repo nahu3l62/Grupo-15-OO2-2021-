@@ -48,6 +48,7 @@
 					<th scope="col">Rodado</th>
 					<th scope="col">Vacaciones</th>
 					<th scope="col">Desde hasta</th>
+					<th scope="col">Generar Qr</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,6 +59,9 @@
 					<th scope="row" th:text="${li.rodado}"></th>
 					<th scope="row" th:text="${li.vacaciones}"></th>
 					<th scope="row" th:text="${li.desdeHasta}"></th>
+					<td>
+						<a class="btn btn-success btn-sm" th:href="@{/permiso/lista/permisoPeriodo/qr/}+${li.idPermiso}" th:text="Generar" title="QR"></a>
+					</td>
 				</tr>
 
 			</tbody>
