@@ -186,7 +186,7 @@ public class PermisoController {
 		model.addAttribute("titulo", "Codigo QR Creado correctamente.");
 		QRCodeGenerator.generateQRCodeImage(datos, 350, 350, QR_CODE_IMAGE_PATH);
 		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(datos, 350, 350));
-		return "permiso_diario/qr";
+		return ViewRouteHelper.PERMISO_DIARIO_QR;
 	}
 
 	
@@ -199,7 +199,7 @@ public class PermisoController {
 		model.addAttribute("titulo", "Codigo QR creado correctamente.");
 		QRCodeGenerator.generateQRCodeImage(datos, 350, 350, QR_CODE_IMAGE_PATH);
 		ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(datos, 350, 350));
-		return "permiso_diario/qr";
+		return ViewRouteHelper.PERMISO_PERIODO_QR;
 	}
 	
 

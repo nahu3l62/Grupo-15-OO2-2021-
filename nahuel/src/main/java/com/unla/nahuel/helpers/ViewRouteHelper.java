@@ -41,6 +41,9 @@ public class ViewRouteHelper {
 	public final static String PERMISO_DIARIO_LISTA = "permiso_diario/lista";
 	public final static String PERMISO_DIARIO_ERROR = "permiso_diario/activoError";
 	public final static String PERMISO_SELECCIONAR_DNI_REDIRECT = "redirect:/permiso_diario/seleccionarDni";
+	public final static String PERMISO_DIARIO_QR = "permiso_diario/qr";
+	
+	
 	
 	//PermisoPeriodo
 	public final static String PERMISO_PERIODO_SELECCIONAR_DNI = "permiso_periodo/activo";
@@ -48,8 +51,8 @@ public class ViewRouteHelper {
 	public final static String PERMISO_PERIODO_LISTA = "permiso_periodo/lista";
 	public final static String PERMISO_PERIODO_RODADO = "permiso_periodo/rodado";	
 	public final static String PERMISO_PERIODO_SELECCIONAR_DNI_REDIRECT = "redirect:/permiso_periodo/seleccionarDni";
-
-
+	public final static String PERMISO_PERIODO_QR = "permiso_diario/qr";
+	
 	
 	//Persona
 	public final static String PERSONA_CREAR = "persona/crear";

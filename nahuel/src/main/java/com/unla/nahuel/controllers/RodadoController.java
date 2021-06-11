@@ -45,14 +45,6 @@ public class RodadoController {
 			attribute.addFlashAttribute("success","Este dominio no se encuentra en la base de datos");
 			return ViewRouteHelper.RODADO_SELECCIONAR_DOMINIO_REDIRECT;
 		}
-		/*
-		for(int i=0;i<dominio.length();i++) {
-			if(dominio[i]==) {
-				attribute.addFlashAttribute("success","Este dominio no se encuentra en la base de datos");
-				return ViewRouteHelper.RODADO_CREAR;
-			}
-		}*/
-		
 		rodados.add(rodado1);
 		model.addAttribute("lista", rodados);
 		return ViewRouteHelper.RODADO_LISTA;
